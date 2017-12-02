@@ -46,13 +46,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-//                Toast.makeText(
-//                        getApplicationContext(),
-//                        "Scan has been started...",
-//                        Toast.LENGTH_SHORT).show();
-
                 scanForWifiDevicesDetails();
-                populateWifiDevicesDetailsToList();
             }
         });
 
@@ -63,6 +57,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onReceive(Context context, Intent intent) {
                 wifiScanResults = wifi.getScanResults();
+                startScanButton.setEnabled(true);
+                mapScanResultsToWifiDetailsDataList();
+                populateWifiDevicesDetailsToList();
             }
         }, new IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION));
     }
@@ -74,8 +71,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void scanForWifiDevicesDetails() {
+        startScanButton.setEnabled(false);
         wifi.startScan();
-        mapScanResultsToWifiDetailsDataList();
     }
 
     private void mapScanResultsToWifiDetailsDataList() {
