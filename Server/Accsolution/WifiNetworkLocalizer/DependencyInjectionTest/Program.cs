@@ -14,29 +14,22 @@ namespace DependencyInjectionTest
         {
             var container = BuildUnityContainer();
 
-            HomeController(new Func<string, IExampleService>(name => container.Resolve<IExampleService>(name)));
-        }
+            var example = container.Resolve<IExampleService>();
 
-        public static void HomeController(Func<string, IExampleService> serviceFactory)
-        {
-            IExampleService _service;
+            Console.WriteLine(example.Cos);
+            example.Cos = "smienilem";
 
-            var exampleServiceImplementation = "default"; // TODO get dynamically
-            _service = serviceFactory(exampleServiceImplementation);
+            var example2 = container.
+            Console.WriteLine(example2.Cos);
+
         }
 
         private static IUnityContainer BuildUnityContainer()
         {
             var container = new UnityContainer();
 
-            container.RegisterType<IExampleService, ExampleService>("default");
-            container.RegisterType<IExampleService, AnotherExampleService>("another");
-
-            container.RegisterType<Func<string, IExampleService>>(
-                new InjectionFactory(c =>
-                new Func<string, IExampleService>(name => c.Resolve<IExampleService>(name))));
-
-            //container.RegisterControllers();
+            container.RegisterType<IExampleService, AnotherExampleService>();
+            //container.RegisterType<IExampleService, AnotherExampleService>(new InjectionProperty("Cos", "dupppa"));
 
             return container;
         }

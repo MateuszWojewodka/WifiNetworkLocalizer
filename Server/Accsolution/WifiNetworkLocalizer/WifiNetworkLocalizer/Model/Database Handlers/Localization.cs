@@ -7,12 +7,21 @@ using WifiNetworkLocalizer.Model.Message_Types;
 
 namespace WifiNetworkLocalizer.Model.Database_Handlers
 {
-    public interface Localization
+    public class Localization : ILocalization
     {
-        Point GetLocalizationPoint(ThreeMacIds threeMacIds);
+        public Point GetLocalizationPoint(ThreeMacIds threeMacIds)
+        {
+            throw new NotImplementedException();
+        }
 
-        ThreeMacIds GetThreeMeasurmentMacIds(string buildingName);
+        public List<string> GetPossibleBuildings()
+        {
+            throw new NotImplementedException();
+        }
 
-        List<String> GetPossibleBuildings();
+        public ThreeMacIds GetThreeMeasurmentMacIds(string buildingName)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

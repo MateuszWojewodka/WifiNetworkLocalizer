@@ -10,37 +10,47 @@ namespace DependencyInjectionTest
 {
     interface IExampleService
     {
+        string Cos { get; set; }
 
+        void napisz();
     }
 
     class ExampleService : IExampleService
     {
+        public string Cos
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
 
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public void napisz()
+        {
+            Console.WriteLine("EXAMPLE SERVICE");
+        }
     }
 
     class AnotherExampleService : IExampleService
     {
+        private string NAPIS;
 
-    }
-
-    class IocContainer
-    {
-
-
-        private static IUnityContainer BuildUnityContainer()
+        public AnotherExampleService()
         {
-            var container = new UnityContainer();
+            NAPIS = "PIERWOTNY KONST";
+            Cos = "duppa";
+        }
 
-            container.RegisterType<IExampleService, ExampleService>("default");
-            container.RegisterType<IExampleService, AnotherExampleService>("another");
+        public string Cos { get; set; }
 
-            container.RegisterType<Func<string, IExampleService>>(
-                new InjectionFactory(c =>
-                new Func<string, IExampleService>(name => c.Resolve<IExampleService>(name))));
-
-            //container.RegisterControllers();
-
-            return container;
+        public void napisz()
+        {
+            Console.WriteLine(NAPIS);
         }
     }
 }
