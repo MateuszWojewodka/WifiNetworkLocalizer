@@ -20,7 +20,7 @@ namespace WifiNetworkLocalizer.Controller
 
         [HttpGet]
         [Route("point")] //?firstMacId=xxx&secondMacId=yyy&thirsMacId=zzz
-        public IHttpActionResult GetLocalizationPoint
+        public IHttpActionResult GetXYLocalizationPoint
             ([FromUri] string firstMacId, [FromUri] string secondMacId, [FromUri] string thirdMacId)
         {
             var request = new Model.Message_Types.ThreeMacIds
@@ -30,7 +30,7 @@ namespace WifiNetworkLocalizer.Controller
                 ThirdMacId = thirdMacId
             };
 
-            var data = _localizationServices.GetLocalizationPoint(request);
+            var data = _localizationServices.GetXYLocalizationPoint(request);
             return Ok(data);
         }
 

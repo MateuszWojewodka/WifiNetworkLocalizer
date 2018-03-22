@@ -9,10 +9,12 @@ namespace WifiNetworkLocalizer.Model.Database_Handlers
 {
     public interface ILocalization
     {
-        Point GetLocalizationPoint(ThreeMacIds threeMacIds);
+        Point GetXYLocalizationPoint(ThreeMacIds threeMacIds);
 
         ThreeMacIds GetThreeMeasurmentMacIds(string buildingName);
 
         List<String> GetPossibleBuildings();
+
+        void PutThreeMeasurmentPointsIntoDatabase(ThreeMacIds threeMacIds);
     }
 }

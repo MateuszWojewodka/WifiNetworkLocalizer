@@ -23,7 +23,7 @@ namespace WifiNetworkLocalizer
         static void Main(string[] args)
         {
             DbConfiguration.SetConfiguration(new MySqlEFConfiguration());
-
+            
             var config = GetPreparedWebApiConfig(PORT);
 
             using (var ctx = new SchoolContext())

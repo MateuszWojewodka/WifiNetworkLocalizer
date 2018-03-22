@@ -15,7 +15,7 @@ namespace WifiNetworkLocalizer.Model
     {
         public SchoolContext() : base("name=WifiNetworkDatabaseConnectionString")
         {
-            Database.SetInitializer<SchoolContext>(new DropCreateDatabaseAlways<SchoolContext>());
+            Database.SetInitializer<SchoolContext>(new DropCreateDatabaseIfModelChanges<SchoolContext>());
         }
 
         public DbSet<Student> Students { get; set; }

@@ -109,11 +109,11 @@
   <ItemGroup>
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\UnityWebApiActivator.cs" />
-    <Compile Include="Controller\ProductController.cs" />
     <Compile Include="Controller\LocalizationController.cs" />
-    <Compile Include="Model\Database Handlers\Localization.cs" />
+    <Compile Include="Model\Database Entities\WifiLocalizerContext.cs" />
+    <Compile Include="Model\Database Handlers\Logic\Localization.cs" />
     <Compile Include="Model\DatabaseEntities.cs" />
-    <Compile Include="Model\Database Handlers\ILocalization.cs" />
+    <Compile Include="Model\Database Handlers\Interfaces\ILocalization.cs" />
     <Compile Include="Model\Message Types\Point.cs" />
     <Compile Include="Model\Message Types\ThreeMacIds.cs" />
     <Compile Include="Model\Product.cs" />
@@ -127,7 +127,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Model\Database Entities\" />
+    <Folder Include="Model\Database Entities\DB Set Type\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

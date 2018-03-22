@@ -9,7 +9,7 @@ namespace WifiNetworkLocalizer.Model.Database_Handlers
 {
     public class Localization : ILocalization
     {
-        public Point GetLocalizationPoint(ThreeMacIds threeMacIds)
+        public Point GetXYLocalizationPoint(ThreeMacIds threeMacIds)
         {
             throw new NotImplementedException();
         }
@@ -22,6 +22,19 @@ namespace WifiNetworkLocalizer.Model.Database_Handlers
         public ThreeMacIds GetThreeMeasurmentMacIds(string buildingName)
         {
             throw new NotImplementedException();
+        }
+
+        public void PutThreeMeasurmentPointsIntoDatabase(ThreeMacIds threeMacIds)
+        {
+            using (var ctx = new SchoolContext())
+            {
+                var stud = new Student() { StudentName = "Bill" };
+
+                ctx.Students.Add(stud);
+                ctx.SaveChanges();
+
+                Console.WriteLine("Rekord dodany w bazie danych.");
+            }
         }
     }
 }
