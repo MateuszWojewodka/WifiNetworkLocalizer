@@ -1,5 +1,8 @@
-﻿using System;
+﻿using MySql.Data.Entity;
+using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,22 +18,23 @@ namespace WifiNetworkLocalizer
 {
     class StartUp
     {
+        private const string PORT = "1471";
+
         static void Main(string[] args)
         {
-            var config = new HttpSelfHostConfiguration("http://localhost:1471");
+            DbConfiguration.SetConfiguration(new MySqlEFConfiguration());
 
-            config.MapHttpAttributeRoutes();
+            var config = GetPreparedWebApiConfig(PORT);
 
-            var container = BuildUnityContainer();
-            config.DependencyResolver = new UnityDependencyResolver(container);
+            using (var ctx = new SchoolContext())
+            {
+                var stud = new Student() { StudentName = "Bill" };
 
-            //using (var ctx = new SchoolContext())
-            //{
-            //    var stud = new Student() { StudentName = "Bill" };
+                ctx.Students.Add(stud);
+                ctx.SaveChanges();
 
-            //    ctx.Students.Add(stud);
-            //    ctx.SaveChanges();
-            //}
+                Console.WriteLine("Rekord dodany w bazie danych.");
+            }
 
             using (HttpSelfHostServer server = new HttpSelfHostServer(config))
             {
@@ -41,12 +45,21 @@ namespace WifiNetworkLocalizer
 
         }
 
-        private static IUnityContainer BuildUnityContainer()
+        private static HttpSelfHostConfiguration GetPreparedWebApiConfig(string port)
+        {
+            HttpSelfHostConfiguration config = new HttpSelfHostConfiguration("http://localhost:1471");
+            config.MapHttpAttributeRoutes();
+
+            config.DependencyResolver = new UnityDependencyResolver(GetNewUnityContainer());
+
+            return config;
+        }
+
+        private static IUnityContainer GetNewUnityContainer()
         {
             var container = new UnityContainer();
 
-            ILocalization localization = new Localization();
-            container.RegisterInstance<ILocalization>(localization, new HierarchicalLifetimeManager()); 
+            container.RegisterType<ILocalization>(new HierarchicalLifetimeManager()); 
 
             return container;
         }

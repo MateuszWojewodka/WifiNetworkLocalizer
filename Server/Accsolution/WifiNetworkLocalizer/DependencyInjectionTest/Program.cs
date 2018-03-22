@@ -19,8 +19,8 @@ namespace DependencyInjectionTest
             Console.WriteLine(example.Cos);
             example.Cos = "smienilem";
 
-            var example2 = container.
-            Console.WriteLine(example2.Cos);
+            //var example2 = container.
+            //Console.WriteLine(example2.Cos);
 
         }
 

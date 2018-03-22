@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MySql.Data.Entity;
+using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
@@ -8,9 +10,10 @@ using System.Threading.Tasks;
 
 namespace WifiNetworkLocalizer.Model
 {
+    [DbConfigurationType(typeof(MySqlEFConfiguration))]
     public class SchoolContext: DbContext
     {
-        public SchoolContext() : base()
+        public SchoolContext() : base("name=WifiNetworkDatabaseConnectionString")
         {
             Database.SetInitializer<SchoolContext>(new DropCreateDatabaseAlways<SchoolContext>());
         }
@@ -21,7 +24,6 @@ namespace WifiNetworkLocalizer.Model
 
     public class Student
     {
-        
         public int StudentID { get; set; }
         public string StudentName { get; set; }
         public DateTime? DateOfBirth { get; set; }
