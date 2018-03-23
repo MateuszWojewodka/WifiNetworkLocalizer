@@ -1,5 +1,4 @@
-﻿using Model;
-using MySql.Data.Entity;
+﻿using MySql.Data.Entity;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -19,15 +18,13 @@ namespace WifiNetworkLocalizer
 {
     class StartUp
     {
-        private const string PORT = "8080";
-
         static void Main(string[] args)
         {
-            ConfigureDBForMySql();
+            string serverPort = "1471";
 
-            var config = GetPreparedWebApiConfig(PORT);
+            SetEFForConnectionWithMySql();
 
-            using (HttpSelfHostServer server = new HttpSelfHostServer(config))
+            using (HttpSelfHostServer server = new HttpSelfHostServer(GetPreparedWebApiConfig(serverPort)))
             {
                 server.OpenAsync().Wait();
                 Console.WriteLine("Server is running...\nPress Enter to shut it down.");
@@ -35,14 +32,16 @@ namespace WifiNetworkLocalizer
             }
         }
 
-        private static void ConfigureDBForMySql()
+        #region HELPER_METHODS
+
+        private static void SetEFForConnectionWithMySql()
         {
             DbConfiguration.SetConfiguration(new MySqlEFConfiguration());
         }
 
         private static HttpSelfHostConfiguration GetPreparedWebApiConfig(string port)
         {
-            HttpSelfHostConfiguration config = new HttpSelfHostConfiguration("http://localhost:8080");
+            HttpSelfHostConfiguration config = new HttpSelfHostConfiguration($"http://localhost:{port}");
             config.MapHttpAttributeRoutes();
 
             config.DependencyResolver = new UnityDependencyResolver(GetNewUnityContainer());
@@ -58,5 +57,7 @@ namespace WifiNetworkLocalizer
 
             return container;
         }
+
+        #endregion
     }
 }

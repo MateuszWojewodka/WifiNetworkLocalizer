@@ -17,17 +17,7 @@ namespace WifiNetworkLocalizer.Model.Database_Handlers
 
         public List<string> GetPossibleBuildings()
         {
-            using (var ctx = new WifiLocalizerContext())
-            {
-                var stud = new Student() { StudentName = "Bill" };
-
-                ctx.Students.Add(stud);
-                ctx.SaveChanges();
-
-                Console.WriteLine("Rekord dodany w bazie danych.");
-            }
-
-            return null;
+            throw new NotImplementedException();
         }
 
         public ThreeMacIds GetThreeMeasurmentMacIds(string buildingName)
@@ -37,15 +27,15 @@ namespace WifiNetworkLocalizer.Model.Database_Handlers
 
         public void PutThreeMeasurmentPointsIntoDatabase(ThreeMacIds threeMacIds)
         {
-            //using (var ctx = new SchoolContext())
-            //{
-            //    var stud = new Student() { StudentName = "Bill" };
+            using (var ctx = new WifiLocalizerContext())
+            {
+                ctx.Database.Log += (message => Console.Write(message));
 
-            //    ctx.Students.Add(stud);
-            //    ctx.SaveChanges();
+                ctx.ThreeMeasurmentMacIds.Add(threeMacIds);
+                ctx.SaveChanges();
 
-            //    Console.WriteLine("Rekord dodany w bazie danych.");
-            //}
+                Console.WriteLine("Rekord dodany w bazie danych.");
+            }
         }
     }
 }

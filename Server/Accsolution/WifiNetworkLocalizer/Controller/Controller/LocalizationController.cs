@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
 using WifiNetworkLocalizer.Model.Database_Handlers;
+using WifiNetworkLocalizer.Model.Message_Types;
 
 namespace WifiNetworkLocalizer.Controller
 {
@@ -31,6 +32,7 @@ namespace WifiNetworkLocalizer.Controller
             };
 
             var data = _localizationServices.GetXYLocalizationPoint(request);
+
             return Ok(data);
         }
 
@@ -39,7 +41,17 @@ namespace WifiNetworkLocalizer.Controller
         public IHttpActionResult GetThreeMeasurmentMacIds([FromUri] string buildingName)
         {
             var data = _localizationServices.GetThreeMeasurmentMacIds(buildingName);
+
             return Ok(data);
+        }
+
+        [HttpPost]
+        [Route("measutmentIds")]
+        public IHttpActionResult PutThreeMeasurmentPointsIntoDatabase([FromBody] ThreeMacIds threeMacIds)
+        {
+            _localizationServices.PutThreeMeasurmentPointsIntoDatabase(threeMacIds);
+
+            return Ok();
         }
 
         [HttpGet]
@@ -47,6 +59,7 @@ namespace WifiNetworkLocalizer.Controller
         public IHttpActionResult GetPossibleBuildings()
         {
             var data = _localizationServices.GetPossibleBuildings();
+
             return Ok(data);
         }
     }

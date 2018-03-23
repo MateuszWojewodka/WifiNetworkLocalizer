@@ -5,8 +5,6 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WifiNetworkLocalizer", "WifiNetworkLocalizer\WifiNetworkLocalizer.csproj", "{3A06154F-F61E-48C7-8F02-971458755596}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DependencyInjectionTest", "DependencyInjectionTest\DependencyInjectionTest.csproj", "{A97FBA66-B908-4226-BE7C-CA6708B95253}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{390B33AC-AC9F-487A-8E79-29F24AD03F19}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Controller", "Controller\Controller.csproj", "{E50F7525-02E2-476C-8F7A-3B8D6C798049}"
@@ -21,10 +19,6 @@ Global
 		{3A06154F-F61E-48C7-8F02-971458755596}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A06154F-F61E-48C7-8F02-971458755596}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A06154F-F61E-48C7-8F02-971458755596}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A97FBA66-B908-4226-BE7C-CA6708B95253}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A97FBA66-B908-4226-BE7C-CA6708B95253}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A97FBA66-B908-4226-BE7C-CA6708B95253}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A97FBA66-B908-4226-BE7C-CA6708B95253}.Release|Any CPU.Build.0 = Release|Any CPU
 		{390B33AC-AC9F-487A-8E79-29F24AD03F19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{390B33AC-AC9F-487A-8E79-29F24AD03F19}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{390B33AC-AC9F-487A-8E79-29F24AD03F19}.Release|Any CPU.ActiveCfg = Release|Any CPU

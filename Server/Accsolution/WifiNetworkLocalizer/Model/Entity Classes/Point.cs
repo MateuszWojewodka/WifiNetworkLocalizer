@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace WifiNetworkLocalizer.Model.Message_Types
 {
-    public class ThreeMacIds
+    public class Point
     {
-        public string FirstMacId { get; set; }
-        public string SecondMacId { get; set; }
-        public string ThirdMacId { get; set; }
+        public int PointId { get; set; }
+        public int X { get; set; }
+        public int Y { get; set; }
     }
 }

@@ -60,13 +60,11 @@
     <Compile Include="Contexts\WifiLocalizerContext.cs" />
     <Compile Include="Interfaces\ILocalization.cs" />
     <Compile Include="Logic\Localization.cs" />
-    <Compile Include="Message Types\Point.cs" />
-    <Compile Include="Message Types\ThreeMacIds.cs" />
+    <Compile Include="Entity Classes\Point.cs" />
+    <Compile Include="Entity Classes\ThreeMacIds.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Registration.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
