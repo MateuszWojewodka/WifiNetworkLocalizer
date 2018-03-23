@@ -110,9 +110,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Config\ded.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="Config\MySqlConnectionsStrings.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

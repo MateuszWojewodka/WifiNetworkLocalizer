@@ -1,7 +1,9 @@
 ﻿using Model;
+using MySql.Data.Entity;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -17,39 +19,30 @@ namespace WifiNetworkLocalizer
 {
     class StartUp
     {
-        private const string PORT = "1471";
-
-        static Configuration Configuration;
+        private const string PORT = "8080";
 
         static void Main(string[] args)
         {
-            Registration.ConfigureDBForMySql();
-
-            Configuration = ReadConfiguration(Path.Combine(@"C:\Users\mateusz.wojewodka\Documents\Visual Studio 2015\Projects\wifiFromGit\Server\Accsolution\WifiNetworkLocalizer\Controller\DBConfig.config"));
+            ConfigureDBForMySql();
 
             var config = GetPreparedWebApiConfig(PORT);
 
             using (HttpSelfHostServer server = new HttpSelfHostServer(config))
             {
                 server.OpenAsync().Wait();
-                Console.WriteLine("Press Enter to quit.");
+                Console.WriteLine("Server is running...\nPress Enter to shut it down.");
                 Console.ReadLine();
             }
         }
 
-        private static Configuration ReadConfiguration(string configurationFilePath)
+        private static void ConfigureDBForMySql()
         {
-            var configMap = new ExeConfigurationFileMap
-            {
-                ExeConfigFilename = configurationFilePath
-            };
-
-            return ConfigurationManager.OpenMappedExeConfiguration(configMap, ConfigurationUserLevel.None);
+            DbConfiguration.SetConfiguration(new MySqlEFConfiguration());
         }
 
         private static HttpSelfHostConfiguration GetPreparedWebApiConfig(string port)
         {
-            HttpSelfHostConfiguration config = new HttpSelfHostConfiguration("http://localhost:1471");
+            HttpSelfHostConfiguration config = new HttpSelfHostConfiguration("http://localhost:8080");
             config.MapHttpAttributeRoutes();
 
             config.DependencyResolver = new UnityDependencyResolver(GetNewUnityContainer());
