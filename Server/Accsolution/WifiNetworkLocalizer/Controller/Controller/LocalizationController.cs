@@ -49,7 +49,7 @@ namespace WifiNetworkLocalizer.Controller
         [Route("measutmentIds")]
         public IHttpActionResult PutThreeMeasurmentPointsIntoDatabase([FromBody] ThreeMacIds threeMacIds)
         {
-            _localizationServices.PutThreeMeasurmentPointsIntoDatabase(threeMacIds);
+            _localizationServices.SetThreeMeasurmentPoints(threeMacIds);
 
             return Ok();
         }

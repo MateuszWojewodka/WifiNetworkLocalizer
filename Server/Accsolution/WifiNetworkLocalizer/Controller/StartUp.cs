@@ -22,7 +22,7 @@ namespace WifiNetworkLocalizer
         {
             string serverPort = "1471";
 
-            SetEFForConnectionWithMySql();
+            ConfigureEFForConnectionWithMySql();
 
             using (HttpSelfHostServer server = new HttpSelfHostServer(GetPreparedWebApiConfig(serverPort)))
             {
@@ -34,7 +34,7 @@ namespace WifiNetworkLocalizer
 
         #region HELPER_METHODS
 
-        private static void SetEFForConnectionWithMySql()
+        private static void ConfigureEFForConnectionWithMySql()
         {
             DbConfiguration.SetConfiguration(new MySqlEFConfiguration());
         }

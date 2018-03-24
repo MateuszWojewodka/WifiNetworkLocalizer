@@ -26,7 +26,7 @@ namespace WifiNetworkLocalizer.Model.Database_Handlers
             throw new NotImplementedException();
         }
 
-        public void PutThreeMeasurmentPointsIntoDatabase(ThreeMacIds threeMacIds)
+        public void SetThreeMeasurmentPoints(ThreeMacIds threeMacIds)
         {
             using (var ctx = new WifiLocalizerContext())
             {

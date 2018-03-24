@@ -15,6 +15,6 @@ namespace WifiNetworkLocalizer.Model.Database_Handlers
 
         List<String> GetPossibleBuildings();
 
-        void PutThreeMeasurmentPointsIntoDatabase(ThreeMacIds threeMacIds);
+        void SetThreeMeasurmentPoints(ThreeMacIds threeMacIds);
     }
 }
