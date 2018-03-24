@@ -27,7 +27,7 @@ namespace WifiNetworkLocalizer
             using (HttpSelfHostServer server = new HttpSelfHostServer(GetPreparedWebApiConfig(serverPort)))
             {
                 server.OpenAsync().Wait();
-                Console.WriteLine("Server is running...\nPress Enter to shut it down.");
+                Console.WriteLine("Server is running...\nPress Enter to shut it down.\n");
                 Console.ReadLine();
             }
         }

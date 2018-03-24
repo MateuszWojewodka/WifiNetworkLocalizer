@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,13 +30,60 @@ namespace WifiNetworkLocalizer.Model.Database_Handlers
         {
             using (var ctx = new WifiLocalizerContext())
             {
-                ctx.Database.Log += (message => Console.Write(message));
-
-                ctx.ThreeMeasurmentMacIds.Add(threeMacIds);
-                ctx.SaveChanges();
-
-                Console.WriteLine("Rekord dodany w bazie danych.");
+                TryAddElementToDataBase(ctx, ctx.ThreeMeasurmentMacIds, threeMacIds);
             }
         }
+
+        #region PRIVATE_METHODS
+
+        private void TryAddElementToDataBase<ElementType>
+            (DbContext ctx, DbSet<ElementType> dbSet, ElementType element) where ElementType : class
+        {
+            try
+            {
+                dbSet.Add(element);
+                ctx.SaveChanges();
+
+                PrintSuccesAddingToDatabaseMessage(element);
+            }
+            catch(Exception error)
+            {
+                PrintFailedAddingToDatabaseMessage(element, error.Message);
+
+                throw error;
+            }
+        }
+
+        private void PrintSuccesAddingToDatabaseMessage<T>(T elementToBeAdd)
+        {
+            Console.WriteLine($"Added {typeof(T).Name} element to database:");
+
+            foreach (var property in typeof(T).GetProperties())
+            {
+                Console.WriteLine($"{property.Name} -> {property.GetValue(elementToBeAdd)}");
+            }
+
+            Console.WriteLine("\n");
+        }
+
+        private void PrintFailedAddingToDatabaseMessage<T>(T elementToBeAdd, string failExceptionMessage)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+
+            Console.WriteLine(failExceptionMessage);
+            Console.WriteLine($"When trying to add {typeof(T).Name} element to databse:");
+
+            Console.WriteLine(typeof(T).Name);
+            foreach (var property in typeof(T).GetProperties())
+            {
+                Console.WriteLine($"{property.Name} -> {property.GetValue(elementToBeAdd)}");
+            }
+
+            Console.WriteLine("\n");
+
+            Console.ResetColor();
+        }
+
+        #endregion
     }
 }
