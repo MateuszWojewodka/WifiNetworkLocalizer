@@ -1,11 +1,12 @@
-﻿using System;
+﻿using AutoMapper;
+using Controller;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
 using WifiNetworkLocalizer.Model.Database_Handlers;
-using WifiNetworkLocalizer.Model.Message_Types;
 
 namespace WifiNetworkLocalizer.Controller
 {
@@ -13,10 +14,12 @@ namespace WifiNetworkLocalizer.Controller
     public class LocalizationController : ApiController
     {
         private ILocalization _localizationServices;
+        private IMapper _mapperServices;
 
-        public LocalizationController(ILocalization localizationServices)
+        public LocalizationController(ILocalization localizationServices, IMapper mapperServices)
         {
-            this._localizationServices = localizationServices;
+            _localizationServices = localizationServices;
+            _mapperServices = mapperServices;
         }
 
         [HttpGet]
@@ -37,19 +40,23 @@ namespace WifiNetworkLocalizer.Controller
         }
 
         [HttpGet]
-        [Route("measurmentIds")] //?buildingName=MCHTR
-        public IHttpActionResult GetThreeMeasurmentMacIds([FromUri] string buildingName)
+        [Route("measurmentIds")] 
+        public IHttpActionResult GetThreeMeasurmentMacIds()
         {
-            var data = _localizationServices.GetThreeMeasurmentMacIds(buildingName);
+            var data = _localizationServices.GetThreeMeasurmentMacIds();
 
-            return Ok(data);
+            ThreeMacIds result = 
+                (data == null) ? null : _mapperServices.Map<Model.Message_Types.ThreeMacIds, ThreeMacIds>(data);
+
+            return Ok(result);
         }
 
         [HttpPost]
         [Route("measutmentIds")]
-        public IHttpActionResult PutThreeMeasurmentPointsIntoDatabase([FromBody] ThreeMacIds threeMacIds)
+        public IHttpActionResult SetThreeMeasurmentMacIds([FromBody] ThreeMacIds threeMacIds)
         {
-            _localizationServices.SetThreeMeasurmentPoints(threeMacIds);
+            var request = _mapperServices.Map<ThreeMacIds, Model.Message_Types.ThreeMacIds>(threeMacIds);
+            _localizationServices.SetThreeMeasurmentMacIds(request);
 
             return Ok();
         }

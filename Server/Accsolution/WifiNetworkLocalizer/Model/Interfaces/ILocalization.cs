@@ -11,10 +11,12 @@ namespace WifiNetworkLocalizer.Model.Database_Handlers
     {
         Point GetXYLocalizationPoint(ThreeMacIds threeMacIds);
 
-        ThreeMacIds GetThreeMeasurmentMacIds(string buildingName);
+        ThreeMacIds GetThreeMeasurmentMacIds();
 
         List<String> GetPossibleBuildings();
 
-        void SetThreeMeasurmentPoints(ThreeMacIds threeMacIds);
+        void SetThreeMeasurmentMacIds(ThreeMacIds threeMacIds);
+
+        void AddRSSIMeasurmentInXYPoint();
     }
 }

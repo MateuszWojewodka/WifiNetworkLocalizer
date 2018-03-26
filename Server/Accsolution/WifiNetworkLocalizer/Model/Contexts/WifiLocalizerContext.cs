@@ -18,5 +18,10 @@ namespace WifiNetworkLocalizer.Model.Database_Entities
         }
 
         public DbSet<ThreeMacIds> ThreeMeasurmentMacIds { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ThreeMacIds>().ToTable("ThreeMacIds");
+        }
     }
 }

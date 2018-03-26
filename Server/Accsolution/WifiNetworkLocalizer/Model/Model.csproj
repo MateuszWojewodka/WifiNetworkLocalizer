@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contexts\WifiLocalizerContext.cs" />
+    <Compile Include="Entity Classes\RSSIMeasurmentPoint.cs" />
     <Compile Include="Interfaces\ILocalization.cs" />
     <Compile Include="Logic\Localization.cs" />
     <Compile Include="Entity Classes\Point.cs" />

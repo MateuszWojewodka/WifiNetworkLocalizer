@@ -1,4 +1,6 @@
-﻿using MySql.Data.Entity;
+﻿using AutoMapper;
+using Controller;
+using MySql.Data.Entity;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -53,11 +55,23 @@ namespace WifiNetworkLocalizer
         {
             var container = new UnityContainer();
 
-            container.RegisterType<ILocalization, Localization>(new HierarchicalLifetimeManager()); 
+            container.RegisterType<ILocalization, Localization>(new HierarchicalLifetimeManager());
+            container.RegisterInstance<IMapper>(GetConfiguredMapper());
 
             return container;
         }
 
+        private static IMapper GetConfiguredMapper()
+        {
+            var config = new MapperConfiguration
+                (e =>
+                {
+                    e.CreateMap<Model.Message_Types.ThreeMacIds, ThreeMacIds>();
+                    e.CreateMap<ThreeMacIds, Model.Message_Types.ThreeMacIds>();
+                });
+
+            return config.CreateMapper();
+        }
         #endregion
     }
 }

@@ -21,17 +21,26 @@ namespace WifiNetworkLocalizer.Model.Database_Handlers
             throw new NotImplementedException();
         }
 
-        public ThreeMacIds GetThreeMeasurmentMacIds(string buildingName)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SetThreeMeasurmentPoints(ThreeMacIds threeMacIds)
+        public ThreeMacIds GetThreeMeasurmentMacIds()
         {
             using (var ctx = new WifiLocalizerContext())
             {
+                return ctx.ThreeMeasurmentMacIds.FirstOrDefault();
+            }
+        }
+
+        public void SetThreeMeasurmentMacIds(ThreeMacIds threeMacIds)
+        {
+            using (var ctx = new WifiLocalizerContext())
+            {
+                ctx.Database.ExecuteSqlCommand("DELETE FROM ThreeMacIds"); //clear Table to keep always one record inside
                 TryAddElementToDataBase(ctx, ctx.ThreeMeasurmentMacIds, threeMacIds);
             }
+        }
+
+        public void AddRSSIMeasurmentInXYPoint()
+        {
+            throw new NotImplementedException();
         }
 
         #region PRIVATE_METHODS
