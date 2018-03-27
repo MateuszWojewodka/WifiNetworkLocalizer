@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Controller;
+using Model.Database_Classes;
 using MySql.Data.Entity;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ using Unity;
 using Unity.AspNet.WebApi;
 using Unity.Lifetime;
 using WifiNetworkLocalizer.Model.Database_Handlers;
+using WifiNetworkLocalizer.Model.Message_Types;
 
 namespace WifiNetworkLocalizer
 {
@@ -25,7 +27,6 @@ namespace WifiNetworkLocalizer
             string serverPort = "1471";
 
             ConfigureEFForConnectionWithMySql();
-
             using (HttpSelfHostServer server = new HttpSelfHostServer(GetPreparedWebApiConfig(serverPort)))
             {
                 server.OpenAsync().Wait();
@@ -56,22 +57,21 @@ namespace WifiNetworkLocalizer
             var container = new UnityContainer();
 
             container.RegisterType<ILocalization, Localization>(new HierarchicalLifetimeManager());
-            //container.RegisterInstance<IMapper>(GetConfiguredMapper());
+            container.RegisterInstance<IMapper>(GetConfiguredMapper());
 
             return container;
         }
 
-        //private static IMapper GetConfiguredMapper()
-        //{
-        //    var config = new MapperConfiguration
-        //        (e =>
-        //        {
-        //            e.CreateMap<Model.Message_Types.ThreeMacIds, ThreeMacIds>();
-        //            e.CreateMap<ThreeMacIds, Model.Message_Types.ThreeMacIds>();
-        //        });
+        private static IMapper GetConfiguredMapper()
+        {
+            var config = new MapperConfiguration
+                (e =>
+                {
+                    e.CreateMap<DeterminantMacIds, ThreeMacIds>();
+                });
 
-        //    return config.CreateMapper();
-        //}
+            return config.CreateMapper();
+        }
         #endregion
     }
 }

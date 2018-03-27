@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Controller;
+using Model.Database_Classes;
 using Model.Entity_Classes;
 using System;
 using System.Collections.Generic;
@@ -16,12 +17,12 @@ namespace WifiNetworkLocalizer.Controller
     public class LocalizationController : ApiController
     {
         private ILocalization _localizationServices;
-        //private IMapper _mapperServices;
+        private IMapper _mapperServices;
 
-        public LocalizationController(ILocalization localizationServices)
+        public LocalizationController(ILocalization localizationServices, IMapper mapperServices)
         {
             _localizationServices = localizationServices;
-           // _mapperServices = mapperServices;
+            _mapperServices = mapperServices;
         }
 
         [HttpGet]
@@ -36,21 +37,18 @@ namespace WifiNetworkLocalizer.Controller
                 ThirdMacId = thirdMacId
             };
 
-            var data = _localizationServices.GetXYLocalizationPoint(request);
+            var data = _localizationServices.GetNearestXYLocalizationPoint(request);
 
             return Ok(data);
         }
 
         [HttpGet]
-        [Route("measurmentIds")] 
-        public IHttpActionResult GetThreeMeasurmentMacIds()
+        [Route("measurmentIds")] //?roomName=MCHTR KORYTARZ
+        public IHttpActionResult GetThreeDeterminantMacIds([FromUri] string roomName)
         {
-            var data = _localizationServices.GetThreeMeasurmentMacIds();
+            var data = _localizationServices.GetThreeDeterminantMacIds(roomName);
 
-            //DeterminantMacIds result = 
-            //    (data == null) ? null : _mapperServices.Map<Model.Message_Types.DeterminantMacIds, DeterminantMacIds>(data);
-
-            return Ok(data);
+            return Ok(_mapperServices.Map<DeterminantMacIds, ThreeMacIds>(data));
         }
 
         [HttpGet]

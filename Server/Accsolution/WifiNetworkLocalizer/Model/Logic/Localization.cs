@@ -13,9 +13,33 @@ namespace WifiNetworkLocalizer.Model.Database_Handlers
 {
     public class Localization : ILocalization
     {
-        public Point GetXYLocalizationPoint(DeterminantMacIds threeMacIds)
+        public Point GetNearestXYLocalizationPoint(ThreeRSSISignals threeMacIds)
         {
-            throw new NotImplementedException();
+            using (var ctx = new WifiLocalizerContext())
+            {
+                var ttt = ctx.RSSIMeasurmentPoints.
+                    Min(x => CalculateVectorsDiff(new ThreeRSSISignals
+                    {
+                        FirstMacIdRSSI = x.FirstMacIdRSSI,
+                        SecondMacIdRSSI = x.SecondMacIdRSSI,
+                        ThirdMacIdRSSI = x.ThirdMacIdRSSI
+                    },
+                    threeMacIds));
+            }
+        }
+
+        private double CalculateVectorsDiff(ThreeRSSISignals first, ThreeRSSISignals second)
+        {
+            ThreeRSSISignals diffVector = new ThreeRSSISignals
+            {
+                FirstMacIdRSSI = first.FirstMacIdRSSI - second.SecondMacIdRSSI,
+                SecondMacIdRSSI = first.SecondMacIdRSSI - second.SecondMacIdRSSI,
+                ThirdMacIdRSSI = first.ThirdMacIdRSSI - second.ThirdMacIdRSSI,
+            };
+
+            double sumOfPowers = Math.Pow(diffVector.FirstMacIdRSSI, 2) + Math.Pow(diffVector.SecondMacIdRSSI, 2) + Math.Pow(diffVector.ThirdMacIdRSSI, 2);
+
+            return Math.Pow(sumOfPowers, 0.5);
         }
 
         public List<RoomInfo> GetPossibleRooms()
@@ -43,11 +67,16 @@ namespace WifiNetworkLocalizer.Model.Database_Handlers
             }
         }
 
-        public DeterminantMacIds GetThreeMeasurmentMacIds()
+        public DeterminantMacIds GetThreeDeterminantMacIds(string roomName)
         {
             using (var ctx = new WifiLocalizerContext())
             {
-                return ctx.DeterminantMacIds.FirstOrDefault();
+                var result = ctx.DeterminantMacIds.Where(x => x.RoomName.Equals(roomName)).FirstOrDefault();
+
+                if (result == null)
+                    throw new NullReferenceException($"There is no room with name {roomName}.");
+
+                return result;
             }
         }
 
@@ -122,11 +151,6 @@ namespace WifiNetworkLocalizer.Model.Database_Handlers
             Console.WriteLine("\n");
 
             Console.ResetColor();
-        }
-
-        Point ILocalization.GetXYLocalizationPoint(DeterminantMacIds threeMacIds)
-        {
-            throw new NotImplementedException();
         }
 
         #endregion
