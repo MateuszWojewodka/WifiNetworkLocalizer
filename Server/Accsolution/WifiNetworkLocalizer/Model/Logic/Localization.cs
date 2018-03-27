@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Model.Database_Classes;
+using Model.Entity_Classes;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -11,36 +13,65 @@ namespace WifiNetworkLocalizer.Model.Database_Handlers
 {
     public class Localization : ILocalization
     {
-        public Point GetXYLocalizationPoint(ThreeMacIds threeMacIds)
+        public Point GetXYLocalizationPoint(DeterminantMacIds threeMacIds)
         {
             throw new NotImplementedException();
         }
 
-        public List<string> GetPossibleBuildings()
-        {
-            throw new NotImplementedException();
-        }
-
-        public ThreeMacIds GetThreeMeasurmentMacIds()
+        public List<RoomInfo> GetPossibleRooms()
         {
             using (var ctx = new WifiLocalizerContext())
             {
-                return ctx.ThreeMeasurmentMacIds.FirstOrDefault();
+                List<RoomInfo> returnList = new List<RoomInfo>();
+
+                var selectResult = ctx.DeterminantMacIds.Select(x => new
+                {
+                    RoomId = x.Id,
+                    RoomName = x.RoomName
+                });
+
+                foreach (var item in selectResult)
+                {
+                    returnList.Add(new RoomInfo
+                    {
+                        roomId = item.RoomId,
+                        roomName = item.RoomName
+                    });
+                }
+
+                return returnList;
             }
         }
 
-        public void SetThreeMeasurmentMacIds(ThreeMacIds threeMacIds)
+        public DeterminantMacIds GetThreeMeasurmentMacIds()
         {
             using (var ctx = new WifiLocalizerContext())
             {
-                ctx.Database.ExecuteSqlCommand("DELETE FROM ThreeMacIds"); //clear Table to keep always one record inside
-                TryAddElementToDataBase(ctx, ctx.ThreeMeasurmentMacIds, threeMacIds);
+                return ctx.DeterminantMacIds.FirstOrDefault();
             }
         }
 
-        public void AddRSSIMeasurmentInXYPoint()
+        public void SetThreeMeasurmentMacIds(DeterminantMacIds threeMacIds)
         {
-            throw new NotImplementedException();
+            using (var ctx = new WifiLocalizerContext())
+            {
+                //ctx.Database.ExecuteSqlCommand("DELETE FROM DeterminantMacIds"); //clear Table to keep always one record inside
+                TryAddElementToDataBase(ctx, ctx.DeterminantMacIds, threeMacIds);
+            }
+        }
+
+        public void AddRSSIMeasurmentInXYPoint(RSSIMeasurmentPoint RSSIMeasurmentPoint)
+        {
+            using (var ctx = new WifiLocalizerContext())
+            {
+                DeterminantMacIds determinantMacIds = ctx.DeterminantMacIds.Find(RSSIMeasurmentPoint.RefId);
+
+                if (determinantMacIds == null)
+                    throw new NullReferenceException($"There is no value with {RSSIMeasurmentPoint.RefId} id in database.");
+
+                RSSIMeasurmentPoint.DeterminantMacIds = determinantMacIds;
+                TryAddElementToDataBase(ctx, ctx.RSSIMeasurmentPoints, RSSIMeasurmentPoint);
+            }
         }
 
         #region PRIVATE_METHODS
@@ -91,6 +122,11 @@ namespace WifiNetworkLocalizer.Model.Database_Handlers
             Console.WriteLine("\n");
 
             Console.ResetColor();
+        }
+
+        Point ILocalization.GetXYLocalizationPoint(DeterminantMacIds threeMacIds)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion

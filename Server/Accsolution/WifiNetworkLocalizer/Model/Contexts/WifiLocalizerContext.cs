@@ -1,4 +1,5 @@
-﻿using MySql.Data.Entity;
+﻿using Model.Entity_Classes;
+using MySql.Data.Entity;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -17,11 +18,7 @@ namespace WifiNetworkLocalizer.Model.Database_Entities
             Database.SetInitializer<WifiLocalizerContext>(new DropCreateDatabaseAlways<WifiLocalizerContext>());
         }
 
-        public DbSet<ThreeMacIds> ThreeMeasurmentMacIds { get; set; }
-
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<ThreeMacIds>().ToTable("ThreeMacIds");
-        }
+        public DbSet<DeterminantMacIds> DeterminantMacIds { get; set; }
+        public DbSet<RSSIMeasurmentPoint> RSSIMeasurmentPoints { get; set; }
     }
 }

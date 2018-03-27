@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WifiNetworkLocalizer.Model.Message_Types
+namespace Model.Entity_Classes
 {
     public class Point
     {
-        public int X { get; set; }
-        public int Y { get; set; }
+        public int x;
+        public int y;
     }
 }

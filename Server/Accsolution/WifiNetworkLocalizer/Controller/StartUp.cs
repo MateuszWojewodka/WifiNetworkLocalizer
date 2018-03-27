@@ -56,22 +56,22 @@ namespace WifiNetworkLocalizer
             var container = new UnityContainer();
 
             container.RegisterType<ILocalization, Localization>(new HierarchicalLifetimeManager());
-            container.RegisterInstance<IMapper>(GetConfiguredMapper());
+            //container.RegisterInstance<IMapper>(GetConfiguredMapper());
 
             return container;
         }
 
-        private static IMapper GetConfiguredMapper()
-        {
-            var config = new MapperConfiguration
-                (e =>
-                {
-                    e.CreateMap<Model.Message_Types.ThreeMacIds, ThreeMacIds>();
-                    e.CreateMap<ThreeMacIds, Model.Message_Types.ThreeMacIds>();
-                });
+        //private static IMapper GetConfiguredMapper()
+        //{
+        //    var config = new MapperConfiguration
+        //        (e =>
+        //        {
+        //            e.CreateMap<Model.Message_Types.ThreeMacIds, ThreeMacIds>();
+        //            e.CreateMap<ThreeMacIds, Model.Message_Types.ThreeMacIds>();
+        //        });
 
-            return config.CreateMapper();
-        }
+        //    return config.CreateMapper();
+        //}
         #endregion
     }
 }

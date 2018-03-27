@@ -8,12 +8,14 @@ using System.Threading.Tasks;
 
 namespace WifiNetworkLocalizer.Model.Message_Types
 {
-    public class ThreeMacIds
+    [Table("DeterminantMacIds")]
+    public class DeterminantMacIds
     {
         [Key]
         public int Id { get; set; }
         public string FirstMacId { get; set; }
         public string SecondMacId { get; set; }
         public string ThirdMacId { get; set; }
+        public string RoomName { get; set; }
     }
 }

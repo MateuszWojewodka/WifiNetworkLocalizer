@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Model.Database_Classes;
+using Model.Entity_Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,14 +11,14 @@ namespace WifiNetworkLocalizer.Model.Database_Handlers
 {
     public interface ILocalization
     {
-        Point GetXYLocalizationPoint(ThreeMacIds threeMacIds);
+        Point GetNearestXYLocalizationPoint(DeterminantMacIds threeMacIds);
 
-        ThreeMacIds GetThreeMeasurmentMacIds();
+        DeterminantMacIds GetThreeMeasurmentMacIds();
 
-        List<String> GetPossibleBuildings();
+        List<RoomInfo> GetPossibleRooms();
 
-        void SetThreeMeasurmentMacIds(ThreeMacIds threeMacIds);
+        void SetThreeMeasurmentMacIds(DeterminantMacIds threeMacIds);
 
-        void AddRSSIMeasurmentInXYPoint();
+        void AddRSSIMeasurmentInXYPoint(RSSIMeasurmentPoint RSSIMeasurmentPoint);
     }
 }
