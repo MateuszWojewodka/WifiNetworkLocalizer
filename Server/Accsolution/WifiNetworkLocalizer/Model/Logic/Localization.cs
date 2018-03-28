@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using WifiNetworkLocalizer.Model.Database_Entities;
@@ -17,29 +18,27 @@ namespace WifiNetworkLocalizer.Model.Database_Handlers
         {
             using (var ctx = new WifiLocalizerContext())
             {
-                var ttt = ctx.RSSIMeasurmentPoints.
-                    Min(x => CalculateVectorsDiff(new ThreeRSSISignals
-                    {
-                        FirstMacIdRSSI = x.FirstMacIdRSSI,
-                        SecondMacIdRSSI = x.SecondMacIdRSSI,
-                        ThirdMacIdRSSI = x.ThirdMacIdRSSI
-                    },
-                    threeMacIds));
+                var nearestRSSIPoint = ctx.RSSIMeasurmentPoints
+                    .OrderBy(CalculteVectorsDiffExpression(threeMacIds))
+                    .FirstOrDefault();
+
+                return new Point
+                {
+                    x = nearestRSSIPoint.X,
+                    y = nearestRSSIPoint.Y
+                };
             }
         }
 
-        private double CalculateVectorsDiff(ThreeRSSISignals first, ThreeRSSISignals second)
+        private Expression<Func<RSSIMeasurmentPoint, double>> CalculteVectorsDiffExpression(ThreeRSSISignals threeMacIds)
         {
-            ThreeRSSISignals diffVector = new ThreeRSSISignals
-            {
-                FirstMacIdRSSI = first.FirstMacIdRSSI - second.SecondMacIdRSSI,
-                SecondMacIdRSSI = first.SecondMacIdRSSI - second.SecondMacIdRSSI,
-                ThirdMacIdRSSI = first.ThirdMacIdRSSI - second.ThirdMacIdRSSI,
-            };
-
-            double sumOfPowers = Math.Pow(diffVector.FirstMacIdRSSI, 2) + Math.Pow(diffVector.SecondMacIdRSSI, 2) + Math.Pow(diffVector.ThirdMacIdRSSI, 2);
-
-            return Math.Pow(sumOfPowers, 0.5);
+            return
+                x => 
+                (Math.Pow(
+                    Math.Pow((x.FirstMacIdRSSI - threeMacIds.FirstMacIdRSSI), 2) + 
+                    Math.Pow((x.SecondMacIdRSSI - threeMacIds.SecondMacIdRSSI), 2) + 
+                    Math.Pow((x.ThirdMacIdRSSI - threeMacIds.ThirdMacIdRSSI), 2)
+                    , 0.5));
         }
 
         public List<RoomInfo> GetPossibleRooms()

@@ -27,14 +27,14 @@ namespace WifiNetworkLocalizer.Controller
 
         [HttpGet]
         [Route("point")] //?firstMacId=xxx&secondMacId=yyy&thirsMacId=zzz
-        public IHttpActionResult GetXYLocalizationPoint
-            ([FromUri] string firstMacId, [FromUri] string secondMacId, [FromUri] string thirdMacId)
+        public IHttpActionResult GetNearestXYLocalizationPoint
+            ([FromUri] int firstMacId, [FromUri] int secondMacId, [FromUri] int thirdMacId)
         {
-            var request = new Model.Message_Types.DeterminantMacIds
+            var request = new ThreeRSSISignals
             {
-                FirstMacId = firstMacId,
-                SecondMacId = secondMacId,
-                ThirdMacId = thirdMacId
+                FirstMacIdRSSI = firstMacId,
+                SecondMacIdRSSI = secondMacId,
+                ThirdMacIdRSSI = thirdMacId
             };
 
             var data = _localizationServices.GetNearestXYLocalizationPoint(request);
