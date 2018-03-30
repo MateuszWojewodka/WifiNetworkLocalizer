@@ -26,7 +26,47 @@ namespace WifiNetworkLocalizer.Controller
         }
 
         [HttpGet]
-        [Route("point")] //?firstMacId=xxx&secondMacId=yyy&thirsMacId=zzz
+        [Route("rooms")]
+        public IHttpActionResult GetPossibleRooms()
+        {
+            var data = _localizationServices.GetPossibleRooms();
+
+            return Ok(data);
+        }
+
+        [HttpGet]
+        [Route("rooms/{roomName}")] //?roomName=MCHTR
+        public IHttpActionResult GetThreeDeterminantMacIds([FromUri] string roomName)
+        {
+            var data = _localizationServices.GetThreeDeterminantMacIds(roomName);
+
+            return Ok(_mapperServices.Map<DeterminantMacIds, ThreeMacIds>(data));
+        }
+
+        [HttpPut]
+        [Route("rooms/{roomName}")]
+        public IHttpActionResult PutNewRoomDeterminantMacIds([FromUri] string roomName, [FromBody] DeterminantMacIds threeMacIds)
+        {
+            threeMacIds.RoomName = roomName;
+
+            _localizationServices.SetThreeMeasurmentMacIds(threeMacIds);
+
+            return Ok();
+        }
+
+        [HttpPost]
+        [Route("rooms/{id}/point")]
+        public IHttpActionResult AddRSSIMeasurmentInXYPoint([FromUri] int id, [FromBody] RSSIMeasurmentPoint RSSIMeasurmentPoint)
+        {
+            RSSIMeasurmentPoint.RoomId = id;
+
+            _localizationServices.AddRSSIMeasurmentInXYPoint(RSSIMeasurmentPoint);
+
+            return Ok();
+        }
+
+        [HttpGet]
+        [Route("rooms/{id}/point")] //?firstMacId=xxx&secondMacId=yyy&thirdMacId=zzz
         public IHttpActionResult GetNearestXYLocalizationPoint
             ([FromUri] int firstMacId, [FromUri] int secondMacId, [FromUri] int thirdMacId)
         {
@@ -40,43 +80,6 @@ namespace WifiNetworkLocalizer.Controller
             var data = _localizationServices.GetNearestXYLocalizationPoint(request);
 
             return Ok(data);
-        }
-
-        [HttpGet]
-        [Route("measurmentIds")] //?roomName=MCHTR KORYTARZ
-        public IHttpActionResult GetThreeDeterminantMacIds([FromUri] string roomName)
-        {
-            var data = _localizationServices.GetThreeDeterminantMacIds(roomName);
-
-            return Ok(_mapperServices.Map<DeterminantMacIds, ThreeMacIds>(data));
-        }
-
-        [HttpGet]
-        [Route("buildings")]
-        public IHttpActionResult GetPossibleRooms()
-        {
-            var data = _localizationServices.GetPossibleRooms();
-
-            return Ok(data);
-        }
-
-        [HttpPost]
-        [Route("measurmentIds")]
-        public IHttpActionResult SetThreeMeasurmentMacIds([FromBody] DeterminantMacIds threeMacIds)
-        {
-            //var request = _mapperServices.Map<DeterminantMacIds, Model.Message_Types.DeterminantMacIds>(threeMacIds);
-            _localizationServices.SetThreeMeasurmentMacIds(threeMacIds);
-
-            return Ok();
-        }
-
-        [HttpPost]
-        [Route("xyPoints")]
-        public IHttpActionResult AddRSSIMeasurmentInXYPoint([FromBody] RSSIMeasurmentPoint RSSIMeasurmentPoint)
-        {
-            _localizationServices.AddRSSIMeasurmentInXYPoint(RSSIMeasurmentPoint);
-
-            return Ok();
         }
     }
 }

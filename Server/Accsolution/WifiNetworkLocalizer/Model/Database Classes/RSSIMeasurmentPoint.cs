@@ -20,7 +20,7 @@ namespace Model.Entity_Classes
         public int X { get; set; }
         public int Y { get; set; }
         [ForeignKey("DeterminantMacIds")]
-        public int RefId { get; set; }
+        public int RoomId { get; set; }
         public DeterminantMacIds DeterminantMacIds { get; set; }
     }
 }

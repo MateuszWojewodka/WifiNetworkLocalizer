@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.ExceptionHandling;
 using System.Web.Http.SelfHost;
 using Unity;
 using Unity.AspNet.WebApi;
@@ -48,6 +49,8 @@ namespace WifiNetworkLocalizer
             config.MapHttpAttributeRoutes();
 
             config.DependencyResolver = new UnityDependencyResolver(GetNewUnityContainer());
+
+            config.Services.Replace(typeof(IExceptionLogger), new CustomExceptionLogger());
 
             return config;
         }

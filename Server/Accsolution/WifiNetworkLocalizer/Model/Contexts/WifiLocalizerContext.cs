@@ -15,7 +15,7 @@ namespace WifiNetworkLocalizer.Model.Database_Entities
     {
         public WifiLocalizerContext() : base("name=WifiNetworkDatabaseConnectionString")
         {
-            Database.SetInitializer<WifiLocalizerContext>(new CreateDatabaseIfNotExists<WifiLocalizerContext>());
+            Database.SetInitializer<WifiLocalizerContext>(new DropCreateDatabaseIfModelChanges<WifiLocalizerContext>());
         }
 
         public DbSet<DeterminantMacIds> DeterminantMacIds { get; set; }

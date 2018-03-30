@@ -1,5 +1,6 @@
 ﻿using Model.Database_Classes;
 using Model.Entity_Classes;
+using Model.Logic;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -22,23 +23,14 @@ namespace WifiNetworkLocalizer.Model.Database_Handlers
                     .OrderBy(CalculteVectorsDiffExpression(threeMacIds))
                     .FirstOrDefault();
 
+                DatabaseHandler.PrintSuccesFetchingFromDatabase(nearestRSSIPoint);
+
                 return new Point
                 {
                     x = nearestRSSIPoint.X,
                     y = nearestRSSIPoint.Y
                 };
             }
-        }
-
-        private Expression<Func<RSSIMeasurmentPoint, double>> CalculteVectorsDiffExpression(ThreeRSSISignals threeMacIds)
-        {
-            return
-                x => 
-                (Math.Pow(
-                    Math.Pow((x.FirstMacIdRSSI - threeMacIds.FirstMacIdRSSI), 2) + 
-                    Math.Pow((x.SecondMacIdRSSI - threeMacIds.SecondMacIdRSSI), 2) + 
-                    Math.Pow((x.ThirdMacIdRSSI - threeMacIds.ThirdMacIdRSSI), 2)
-                    , 0.5));
         }
 
         public List<RoomInfo> GetPossibleRooms()
@@ -62,6 +54,8 @@ namespace WifiNetworkLocalizer.Model.Database_Handlers
                     });
                 }
 
+                DatabaseHandler.PrintSuccesFetchingFromDatabase("possible room list");
+
                 return returnList;
             }
         }
@@ -72,8 +66,7 @@ namespace WifiNetworkLocalizer.Model.Database_Handlers
             {
                 var result = ctx.DeterminantMacIds.Where(x => x.RoomName.Equals(roomName)).FirstOrDefault();
 
-                if (result == null)
-                    throw new NullReferenceException($"There is no room with name {roomName}.");
+                DatabaseHandler.PrintSuccesFetchingFromDatabase(result);
 
                 return result;
             }
@@ -83,8 +76,7 @@ namespace WifiNetworkLocalizer.Model.Database_Handlers
         {
             using (var ctx = new WifiLocalizerContext())
             {
-                //ctx.Database.ExecuteSqlCommand("DELETE FROM DeterminantMacIds"); //clear Table to keep always one record inside
-                TryAddElementToDataBase(ctx, ctx.DeterminantMacIds, threeMacIds);
+                DatabaseHandler.AddElementToDataBase(ctx, ctx.DeterminantMacIds, threeMacIds);
             }
         }
 
@@ -92,64 +84,26 @@ namespace WifiNetworkLocalizer.Model.Database_Handlers
         {
             using (var ctx = new WifiLocalizerContext())
             {
-                DeterminantMacIds determinantMacIds = ctx.DeterminantMacIds.Find(RSSIMeasurmentPoint.RefId);
-
-                if (determinantMacIds == null)
-                    throw new NullReferenceException($"There is no value with {RSSIMeasurmentPoint.RefId} id in database.");
+                DeterminantMacIds determinantMacIds = ctx.DeterminantMacIds.Find(RSSIMeasurmentPoint.RoomId);
 
                 RSSIMeasurmentPoint.DeterminantMacIds = determinantMacIds;
-                TryAddElementToDataBase(ctx, ctx.RSSIMeasurmentPoints, RSSIMeasurmentPoint);
+                DatabaseHandler.AddElementToDataBase(ctx, ctx.RSSIMeasurmentPoints, RSSIMeasurmentPoint);
             }
         }
 
         #region PRIVATE_METHODS
 
-        private void TryAddElementToDataBase<ElementType>
-            (DbContext ctx, DbSet<ElementType> dbSet, ElementType element) where ElementType : class
+        private Expression<Func<RSSIMeasurmentPoint, double>> CalculteVectorsDiffExpression(ThreeRSSISignals threeMacIds)
         {
-            try
-            {
-                dbSet.Add(element);
-                ctx.SaveChanges();
-
-                PrintSuccesAddingToDatabaseMessage(element);
-            }
-            catch(Exception error)
-            {
-                PrintFailedAddingToDatabaseMessage(element, error.Message);
-
-                throw error;
-            }
-        }
-
-        private void PrintSuccesAddingToDatabaseMessage<T>(T elementToBeAdd)
-        {
-            Console.WriteLine($"Added {typeof(T).Name} element to database:");
-
-            foreach (var property in typeof(T).GetProperties())
-            {
-                Console.WriteLine($"{property.Name} -> {property.GetValue(elementToBeAdd)}");
-            }
-
-            Console.WriteLine("\n");
-        }
-
-        private void PrintFailedAddingToDatabaseMessage<T>(T elementToBeAdd, string failExceptionMessage)
-        {
-            Console.ForegroundColor = ConsoleColor.Red;
-
-            Console.WriteLine(failExceptionMessage);
-            Console.WriteLine($"When trying to add {typeof(T).Name} element to databse:");
-
-            Console.WriteLine(typeof(T).Name);
-            foreach (var property in typeof(T).GetProperties())
-            {
-                Console.WriteLine($"{property.Name} -> {property.GetValue(elementToBeAdd)}");
-            }
-
-            Console.WriteLine("\n");
-
-            Console.ResetColor();
+            return
+                x =>
+                //sqare root of
+                (Math.Pow(
+                    //second powers sum
+                    Math.Pow((x.FirstMacIdRSSI - threeMacIds.FirstMacIdRSSI), 2) +
+                    Math.Pow((x.SecondMacIdRSSI - threeMacIds.SecondMacIdRSSI), 2) +
+                    Math.Pow((x.ThirdMacIdRSSI - threeMacIds.ThirdMacIdRSSI), 2)
+                    , 0.5));
         }
 
         #endregion
