@@ -68,7 +68,7 @@ namespace WifiNetworkLocalizer.Controller
         [HttpGet]
         [Route("rooms/{id}/point")] //?firstMacId=xxx&secondMacId=yyy&thirdMacId=zzz
         public IHttpActionResult GetNearestXYLocalizationPoint
-            ([FromUri] int firstMacId, [FromUri] int secondMacId, [FromUri] int thirdMacId)
+            ([FromUri] int id, [FromUri] int firstMacId, [FromUri] int secondMacId, [FromUri] int thirdMacId)
         {
             var request = new ThreeRSSISignals
             {
@@ -77,7 +77,7 @@ namespace WifiNetworkLocalizer.Controller
                 ThirdMacIdRSSI = thirdMacId
             };
 
-            var data = _localizationServices.GetNearestXYLocalizationPoint(request);
+            var data = _localizationServices.GetNearestXYLocalizationPoint(id, request);
 
             return Ok(data);
         }

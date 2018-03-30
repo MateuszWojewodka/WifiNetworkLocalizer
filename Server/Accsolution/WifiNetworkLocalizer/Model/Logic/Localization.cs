@@ -15,11 +15,11 @@ namespace WifiNetworkLocalizer.Model.Database_Handlers
 {
     public class Localization : ILocalization
     {
-        public Point GetNearestXYLocalizationPoint(ThreeRSSISignals threeMacIds)
+        public Point GetNearestXYLocalizationPoint(int id, ThreeRSSISignals threeMacIds)
         {
             using (var ctx = new WifiLocalizerContext())
             {
-                var nearestRSSIPoint = ctx.RSSIMeasurmentPoints
+                var nearestRSSIPoint = ctx.RSSIMeasurmentPoints.Where(x => x.RoomId == id)
                     .OrderBy(CalculteVectorsDiffExpression(threeMacIds))
                     .FirstOrDefault();
 

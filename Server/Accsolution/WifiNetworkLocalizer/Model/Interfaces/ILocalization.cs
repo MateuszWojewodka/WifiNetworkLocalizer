@@ -11,7 +11,7 @@ namespace WifiNetworkLocalizer.Model.Database_Handlers
 {
     public interface ILocalization
     {
-        Point GetNearestXYLocalizationPoint(ThreeRSSISignals threeMacIds);
+        Point GetNearestXYLocalizationPoint(int id, ThreeRSSISignals threeMacIds);
 
         DeterminantMacIds GetThreeDeterminantMacIds(string roomName);
 
