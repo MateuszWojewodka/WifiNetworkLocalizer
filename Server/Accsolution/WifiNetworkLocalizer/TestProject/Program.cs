@@ -46,26 +46,34 @@ namespace TestProject
                 }
 
                 //adding new measurment point
-                RSSIMeasurmentPoint point = new RSSIMeasurmentPoint
-                {
-                    FirstMacIdRSSI = 123,
-                    SecondMacIdRSSI = 22,
-                    ThirdMacIdRSSI = 11,
-                    X = 10,
-                    Y = 20
-                };
-
-                AddRSSIMeasurmentPoint(client, "1/point", point).GetAwaiter().GetResult();
-                Console.WriteLine("Added new measurment point.");
+                addMeasurmentPoint(client, 1, 1, 10, 10, 10);
+                addMeasurmentPoint(client, 2, 2, 30, 30, 30);
+                addMeasurmentPoint(client, 3, 3, 40, 40, 40);
+                addMeasurmentPoint(client, 4, 4, 60, 60, 60);
 
                 //get nearest measurment point
                 Point nearestPoint = GetNearestXYLocalizationPoint(client, "1/point?firstMacId=-99&secondMacId=-2&thirdMacId=-55").GetAwaiter().GetResult();
                 Console.WriteLine("Nearest Point:\n" + nearestPoint.x + "\n" + nearestPoint.y);
-            }
+            } 
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
             }
+        }
+
+        static void addMeasurmentPoint(HttpClient client, int x, int y, int a, int b, int c)
+        {
+            RSSIMeasurmentPoint point = new RSSIMeasurmentPoint
+            {
+                FirstMacIdRSSI = a,
+                SecondMacIdRSSI = b,
+                ThirdMacIdRSSI = c,
+                X = x,
+                Y = y
+            };
+
+            AddRSSIMeasurmentPoint(client, "1/point", point).GetAwaiter().GetResult();
+            Console.WriteLine("Added new measurment point.");
         }
 
         static async Task<List<RoomInfo>> GetPossibleRoomsAsync(HttpClient client, string path)
