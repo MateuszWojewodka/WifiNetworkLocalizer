@@ -20,9 +20,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import android.Manifest;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
+import skyandroid.wifinetworklocalizator.Model.DataTypes.RoomInfo;
+import skyandroid.wifinetworklocalizator.Model.ServerHandler;
+
+import static skyandroid.wifinetworklocalizator.Model.ServerHandler.INSTANCE;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,6 +44,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        new Thread() {
+            @Override
+            public void run() {
+                try {
+                    List<RoomInfo> a = ServerHandler.INSTANCE.getPossibleRooms();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
 
         wifiDevicesDetailsListView = (ListView) findViewById(R.id.lvScanDetails);
         startScanButton = (Button) findViewById(R.id.btnScanWifi);
