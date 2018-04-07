@@ -1,4 +1,4 @@
-package skyandroid.wifinetworklocalizator;
+package skyandroid.wifinetworklocalizator.Model;
 
 /**
  * Created by skywatcher_usr on 2017-11-28.

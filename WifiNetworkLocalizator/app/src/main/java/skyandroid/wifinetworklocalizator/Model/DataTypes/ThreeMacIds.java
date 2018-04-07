@@ -6,7 +6,7 @@ package skyandroid.wifinetworklocalizator.Model.DataTypes;
 
 public class ThreeMacIds {
 
-    String firstMacId;
-    String SecondMacId;
-    String ThirdMacId;
+    public String FirstMacId;
+    public String SecondMacId;
+    public String ThirdMacId;
 }

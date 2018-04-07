@@ -4,7 +4,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.pm.PackageManager;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
 import android.os.Build;
@@ -17,19 +16,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import android.Manifest;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import skyandroid.wifinetworklocalizator.Model.DataTypes.RoomInfo;
-import skyandroid.wifinetworklocalizator.Model.ServerHandler;
-
-import static skyandroid.wifinetworklocalizator.Model.ServerHandler.INSTANCE;
+import skyandroid.wifinetworklocalizator.Model.WifiDevicesDetails;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -45,16 +37,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        new Thread() {
-            @Override
-            public void run() {
-                try {
-                    List<RoomInfo> a = ServerHandler.INSTANCE.getPossibleRooms();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }.start();
+//        Thread x = new Thread() {
+//            @Override
+//            public void run() {
+//                try {
+//                    List<RoomInfo> a = ServerHandler.INSTANCE.getPossibleRooms();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        };
+//        x.start();
 
         wifiDevicesDetailsListView = (ListView) findViewById(R.id.lvScanDetails);
         startScanButton = (Button) findViewById(R.id.btnScanWifi);

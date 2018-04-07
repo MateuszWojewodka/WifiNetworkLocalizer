@@ -7,13 +7,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
-import skyandroid.wifinetworklocalizator.Model.DataModels.RoomInfoModel;
+import skyandroid.wifinetworklocalizator.Model.DataTypes.MeasurmentPoint;
+import skyandroid.wifinetworklocalizator.Model.DataTypes.Point;
 import skyandroid.wifinetworklocalizator.Model.DataTypes.RoomInfo;
+import skyandroid.wifinetworklocalizator.Model.DataTypes.ThreeMacIds;
+import skyandroid.wifinetworklocalizator.Model.DataTypes.ThreeRSSISignals;
 
 /**
  * Created by skywatcher_usr on 2018-04-04.
@@ -26,16 +24,47 @@ public enum ServerHandler {
     private HttpCommunicationHandler server
             = new HttpCommunicationHandler();
 
+    private Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
     public List<RoomInfo> getPossibleRooms() throws IOException {
 
         String jsonString = server.doGetRequest("localization/rooms");
 
-        GsonBuilder builder = new GsonBuilder();
-        builder.setPrettyPrinting();
+        return gson.fromJson(jsonString, new ArrayList<RoomInfo>().getClass());
+    }
 
-        Gson gson = builder.create();
-        List<RoomInfo> rooms = gson.fromJson(jsonString, new ArrayList<RoomInfo>().getClass());
+    public ThreeMacIds getThreeDeterminantMacIds(String roomName) throws IOException {
 
-        return rooms;
+        String jsonString = server.doGetRequest("localization/rooms/" + roomName);
+
+        return gson.fromJson(jsonString, ThreeMacIds.class);
+    }
+
+    public void putNewRoomDeterminantMacIds(String roomName, ThreeMacIds macIds) throws IOException {
+
+        String jsonPostString = gson.toJson(macIds);
+
+        server.doPostRequest("localization/rooms/" + roomName, jsonPostString);
+    }
+
+    public void addRSSIMeasurmentInXYPoint(int roomId, MeasurmentPoint measurmentPoint) throws IOException {
+
+        String jsonPostString = gson.toJson(measurmentPoint);
+
+        String resource = "localization/rooms/" + roomId + "/point";
+
+        server.doPostRequest(resource, jsonPostString);
+    }
+
+    public Point getNearestXYLocalizationPoint(int roomId, ThreeRSSISignals measurmentSignals) throws IOException {
+
+        String resource = "localization/rooms" + roomId + "/point";
+        String query =
+                "?firstMacId=" + measurmentSignals.FirstRSSISignal +
+                "&secondMacId=" + measurmentSignals.SecondRSSISignal +
+                "&thirdMacId=" + measurmentSignals.ThirdRSSISignal;
+
+        String responseJson = server.doGetRequest(resource + query);
+        return gson.fromJson(responseJson, Point.class);
     }
 }

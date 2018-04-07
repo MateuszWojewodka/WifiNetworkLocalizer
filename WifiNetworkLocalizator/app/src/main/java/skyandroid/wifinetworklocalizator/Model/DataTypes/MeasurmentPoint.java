@@ -6,9 +6,9 @@ package skyandroid.wifinetworklocalizator.Model.DataTypes;
 
 public class MeasurmentPoint {
 
-    String firstMacId;
-    String SecondMacId;
-    String ThirdMacId;
-    int x;
-    int y;
+    public String FirstMacIdRSSI;
+    public String SecondMacIdRSSI;
+    public String ThirdMacIdRSSI;
+    public int X;
+    public int Y;
 }

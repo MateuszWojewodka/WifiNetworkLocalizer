@@ -6,6 +6,6 @@ package skyandroid.wifinetworklocalizator.Model.DataTypes;
 
 public class RoomInfo {
 
-    int roomId;
-    String roomName;
+    public int roomId;
+    public String roomName;
 }
