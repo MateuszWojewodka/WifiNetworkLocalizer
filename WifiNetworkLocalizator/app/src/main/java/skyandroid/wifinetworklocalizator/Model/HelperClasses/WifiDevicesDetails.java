@@ -1,4 +1,4 @@
-package skyandroid.wifinetworklocalizator.Model;
+package skyandroid.wifinetworklocalizator.Model.HelperClasses;
 
 /**
  * Created by skywatcher_usr on 2017-11-28.
@@ -6,9 +6,9 @@ package skyandroid.wifinetworklocalizator.Model;
 
 public class WifiDevicesDetails {
 
-    String SSID;
-    String RSSI;
-    String BSSID;
+    public String SSID;
+    public String RSSI;
+    public String BSSID;
 
     public WifiDevicesDetails(String SSID, String RSSI, String BSSID) {
         this.SSID = SSID;

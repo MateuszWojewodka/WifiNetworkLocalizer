@@ -12,6 +12,7 @@ import skyandroid.wifinetworklocalizator.Model.DataTypes.Point;
 import skyandroid.wifinetworklocalizator.Model.DataTypes.RoomInfo;
 import skyandroid.wifinetworklocalizator.Model.DataTypes.ThreeMacIds;
 import skyandroid.wifinetworklocalizator.Model.DataTypes.ThreeRSSISignals;
+import skyandroid.wifinetworklocalizator.Model.HelperClasses.HttpCommunicationHandler;
 
 /**
  * Created by skywatcher_usr on 2018-04-04.

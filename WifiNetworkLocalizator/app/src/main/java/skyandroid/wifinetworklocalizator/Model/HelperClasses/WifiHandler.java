@@ -1,4 +1,4 @@
-package skyandroid.wifinetworklocalizator.Model;
+package skyandroid.wifinetworklocalizator.Model.HelperClasses;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -11,6 +11,8 @@ import android.support.v7.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
+import skyandroid.wifinetworklocalizator.Model.HelperClasses.WifiDevicesDetails;
 
 /**
  * Created by skywatcher_usr on 2018-04-06.

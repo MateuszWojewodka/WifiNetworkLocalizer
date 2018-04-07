@@ -1,4 +1,4 @@
-package skyandroid.wifinetworklocalizator.Model;
+package skyandroid.wifinetworklocalizator.Model.HelperClasses;
 
 import java.io.IOException;
 
@@ -12,7 +12,7 @@ import okhttp3.Response;
  * Created by skywatcher_usr on 2018-04-04.
  */
 
-class HttpCommunicationHandler {
+public class HttpCommunicationHandler {
 
     private OkHttpClient client = new OkHttpClient();
     private final MediaType JSON = MediaType.parse("application/json; charset=utf-8");

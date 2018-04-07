@@ -1,4 +1,4 @@
-package skyandroid.wifinetworklocalizator;
+package skyandroid.wifinetworklocalizator.View;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -21,9 +21,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import skyandroid.wifinetworklocalizator.Model.WifiDevicesDetails;
+import skyandroid.wifinetworklocalizator.Model.HelperClasses.WifiDevicesDetails;
+import skyandroid.wifinetworklocalizator.R;
 
-public class MainActivity extends AppCompatActivity {
+public class StartActivity extends AppCompatActivity {
 
     WifiManager wifi;
     List<ScanResult> wifiScanResults;
@@ -100,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void populateWifiDevicesDetailsToList() {
-        ArrayAdapter<WifiDevicesDetails> adapter = new ArrayAdapter<WifiDevicesDetails>(MainActivity.this, R.layout.scan_details, wifiDevicesDetailsDataList) {
+        ArrayAdapter<WifiDevicesDetails> adapter = new ArrayAdapter<WifiDevicesDetails>(StartActivity.this, R.layout.scan_details, wifiDevicesDetailsDataList) {
 
             @Override
             public View getView(int position, View view, ViewGroup parent) {
