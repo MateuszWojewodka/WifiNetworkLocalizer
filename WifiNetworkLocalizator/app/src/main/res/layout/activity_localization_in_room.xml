@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/txtRoomDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="28dp"
+        android:text="Room"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtXDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:text="X"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/txtPointX"
+        app:layout_constraintHorizontal_bias="0.529"
+        app:layout_constraintStart_toStartOf="@+id/txtPointX"
+        app:layout_constraintTop_toBottomOf="@+id/txtPointX" />
+
+    <TextView
+        android:id="@+id/txtYDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Y"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/txtPointY"
+        app:layout_constraintHorizontal_bias="0.52"
+        app:layout_constraintStart_toStartOf="@+id/txtPointY"
+        app:layout_constraintTop_toBottomOf="@+id/txtPointY" />
+
+    <Button
+        android:id="@+id/btnCheckLocationDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="44dp"
+        android:text="Sprawdz Lokalizacje"
+        app:layout_constraintEnd_toEndOf="@+id/txtRoomDesc"
+        app:layout_constraintStart_toStartOf="@+id/txtRoomDesc"
+        app:layout_constraintTop_toBottomOf="@+id/txtRoomDesc" />
+
+    <TextView
+        android:id="@+id/txtPointX"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="56dp"
+        android:text="punktX"
+        app:layout_constraintEnd_toStartOf="@+id/txtYourLocationDesc"
+        app:layout_constraintTop_toBottomOf="@+id/txtYourLocationDesc" />
+
+    <TextView
+        android:id="@+id/txtPointY"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="56dp"
+        android:text="punktY"
+        app:layout_constraintStart_toEndOf="@+id/txtYourLocationDesc"
+        app:layout_constraintTop_toBottomOf="@+id/txtYourLocationDesc" />
+
+    <TextView
+        android:id="@+id/txtYourLocationDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="56dp"
+        android:text="Twoje położenie:"
+        app:layout_constraintEnd_toEndOf="@+id/btnCheckLocationDesc"
+        app:layout_constraintHorizontal_bias="0.532"
+        app:layout_constraintStart_toStartOf="@+id/btnCheckLocationDesc"
+        app:layout_constraintTop_toBottomOf="@+id/btnCheckLocationDesc" />
+
+</android.support.constraint.ConstraintLayout>

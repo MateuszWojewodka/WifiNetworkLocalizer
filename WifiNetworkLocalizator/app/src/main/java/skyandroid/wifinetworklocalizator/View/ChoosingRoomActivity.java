@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -36,7 +37,16 @@ public class ChoosingRoomActivity extends AppCompatActivity {
         setContentView(R.layout.activity_choose_room);
 
         viewModel = new AnonymousClientViewModel(this);
+
         possibleRoomsListView = (ListView) findViewById(R.id.lvPossibleRooms);
+
+        possibleRoomsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+
+            }
+        });
 
         fetchPossibleRooms();
     }
