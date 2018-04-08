@@ -30,7 +30,6 @@ public class ChoosingRoomActivity extends AppCompatActivity {
 
     ListView possibleRoomsListView;
 
-    @SuppressLint("StaticFieldLeak")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,10 +38,11 @@ public class ChoosingRoomActivity extends AppCompatActivity {
         viewModel = new AnonymousClientViewModel(this);
         possibleRoomsListView = (ListView) findViewById(R.id.lvPossibleRooms);
 
-        final List<String> jakasLista = new ArrayList<>();
-        jakasLista.add("jeden");
-        jakasLista.add("dwa");
-        jakasLista.add("trzy");
+        fetchPossibleRooms();
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    private void fetchPossibleRooms() {
 
         new AsyncTask<Void, Void, Void>() {
             @Override
