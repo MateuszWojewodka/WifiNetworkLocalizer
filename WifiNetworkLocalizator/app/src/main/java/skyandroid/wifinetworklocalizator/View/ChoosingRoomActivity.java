@@ -12,10 +12,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import skyandroid.wifinetworklocalizator.Model.DataTypes.RoomInfo;
 import skyandroid.wifinetworklocalizator.R;
@@ -27,8 +26,7 @@ import skyandroid.wifinetworklocalizator.ViewModel.AnonymousClientViewModel;
 
 public class ChoosingRoomActivity extends AppCompatActivity {
 
-    AnonymousClientViewModel viewModel
-            = new AnonymousClientViewModel(this);
+    AnonymousClientViewModel viewModel;
 
     ListView possibleRoomsListView;
 
@@ -38,34 +36,48 @@ public class ChoosingRoomActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_room);
 
+        viewModel = new AnonymousClientViewModel(this);
+        possibleRoomsListView = (ListView) findViewById(R.id.lvPossibleRooms);
+
+        final List<String> jakasLista = new ArrayList<>();
+        jakasLista.add("jeden");
+        jakasLista.add("dwa");
+        jakasLista.add("trzy");
+
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... voids) {
 
                 try {
                     viewModel.fetchPossibleRooms();
-                    populatePossibleRoomsOnListView();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
                 return null;
             }
-        }.doInBackground();
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+                populatePossibleRoomsOnListView();
+            }
+        }.execute();
     }
 
     private void populatePossibleRoomsOnListView() {
 
         ArrayAdapter<RoomInfo> adapter
-                = new ArrayAdapter<RoomInfo>(this, R.layout.room_info, viewModel.possibleRooms) {
-            @NonNull
+                = new ArrayAdapter<RoomInfo>(ChoosingRoomActivity.this, R.layout.room_info, viewModel.possibleRooms) {
+
             @Override
-            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+            public View getView(int position, View convertView, ViewGroup parent) {
 
                 if (convertView == null)
                     convertView = getLayoutInflater().inflate(R.layout.room_info, parent, false);
 
-                RoomInfo currentIterm = viewModel.possibleRooms.get(position);
+                RoomInfo currentItem = viewModel.possibleRooms.get(position);
                 TextView roomName = (TextView) convertView.findViewById(R.id.txtRoomName);
+                roomName.setText(currentItem.roomName);
 
                 return convertView;
             }

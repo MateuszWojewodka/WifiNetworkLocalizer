@@ -2,6 +2,7 @@ package skyandroid.wifinetworklocalizator.Model;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -31,7 +32,7 @@ public enum ServerHandler {
 
         String jsonString = server.doGetRequest("localization/rooms");
 
-        return gson.fromJson(jsonString, new ArrayList<RoomInfo>().getClass());
+        return gson.fromJson(jsonString, new TypeToken<List<RoomInfo>>(){}.getType());
     }
 
     public ThreeMacIds getThreeDeterminantMacIds(String roomName) throws IOException {

@@ -3,6 +3,7 @@ package skyandroid.wifinetworklocalizator.ViewModel;
 import android.support.v7.app.AppCompatActivity;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import skyandroid.wifinetworklocalizator.Model.DataTypes.Point;
@@ -18,8 +19,8 @@ import android.databinding.ObservableField;
 
 public class AnonymousClientViewModel implements ViewModel {
 
-    public ObservableField<Point> currentPoint;
-    public List<RoomInfo> possibleRooms;
+    public ObservableField<Point> currentPoint = new ObservableField<>();
+    public List<RoomInfo> possibleRooms = new ArrayList<>();
 
     private LocalizationLogic localizationLogic;
     private String roomName = "";
