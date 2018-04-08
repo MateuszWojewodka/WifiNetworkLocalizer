@@ -42,6 +42,8 @@ public class WifiHandler {
 
     public List<WifiDevicesDetails> getWifiDevicesSignals() {
 
+        setUpWifiModule();
+
         synchronized (wifiScanningLock) {
 
             wifi.startScan();
