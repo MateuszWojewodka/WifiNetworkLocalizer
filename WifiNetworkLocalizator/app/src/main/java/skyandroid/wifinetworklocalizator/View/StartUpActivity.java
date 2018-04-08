@@ -28,18 +28,14 @@ public class StartUpActivity extends AppCompatActivity {
 
     Button startButton;
     Button adminButton;
-    Button exitButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_startup);
 
-        startButton = (Button) findViewById(R.id.btnStart);
+        startButton = (Button) findViewById(R.id.btnLocalize);
         adminButton = (Button) findViewById(R.id.btnAdmin);
-        exitButton = (Button) findViewById(R.id.btnExit);
-
-
     }
 
     //View.OnClickListener
