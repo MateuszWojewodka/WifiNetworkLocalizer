@@ -36,8 +36,15 @@ public class StartUpActivity extends AppCompatActivity {
 
         startButton = (Button) findViewById(R.id.btnLocalize);
         adminButton = (Button) findViewById(R.id.btnAdmin);
-    }
 
-    //View.OnClickListener
+        startButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(), ChoosingRoomActivity.class);
+//                i.putExtra("fieldName", fieldName);
+                startActivity(i);
+            }
+        });
+    }
 
 }
