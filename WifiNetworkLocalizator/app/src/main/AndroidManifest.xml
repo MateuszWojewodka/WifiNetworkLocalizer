@@ -24,6 +24,7 @@
         <activity android:name=".View.AnonymousUser.LocalizationInRoomActivity"></activity>
         <activity android:name=".View.AdminUser.ChooseAdminModeActivity"></activity>
         <activity android:name=".View.AdminUser.ChooseDeterminantMacIdsActivity"/>
+        <activity android:name=".View.AdminUser.MeasurmentsActivity"/>
     </application>
 
 </manifest>

@@ -41,4 +41,16 @@ public class HttpCommunicationHandler {
         Response response = client.newCall(request).execute();
         return response.body().string();
     }
+
+    public String doPutRequest(String resource, String json) throws IOException {
+        String url = baseAddress + resource;
+
+        RequestBody body = RequestBody.create(JSON, json);
+        Request request = new Request.Builder()
+                .url(url)
+                .put(body)
+                .build();
+        Response response = client.newCall(request).execute();
+        return response.body().string();
+    }
 }

@@ -1,6 +1,7 @@
 package skyandroid.wifinetworklocalizator.View.AdminUser;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,14 +12,15 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import skyandroid.wifinetworklocalizator.Model.DataTypes.ThreeMacIds;
 import skyandroid.wifinetworklocalizator.Model.HelperClasses.WifiDevicesDetails;
 import skyandroid.wifinetworklocalizator.R;
 import skyandroid.wifinetworklocalizator.ViewModel.AdminClientViewModel;
@@ -44,14 +46,15 @@ public class ChooseDeterminantMacIdsActivity extends AppCompatActivity {
 
         viewModel = new AdminClientViewModel(this);
 
-        TextView RSSI = (TextView) findViewById(R.id.txtRSSIValueX);
+        Bundle b = getIntent().getExtras();
+        viewModel.roomName = b.getString("roomName");
 
         possibleAccessPointsListView = (ListView) findViewById(R.id.lvPossibleAccesPoints);
-
-        confirmButton = (Button) findViewById(R.id.btnConfirmChoseMacIds);
-        confirmButton.setEnabled(false);
-
         refreshButton = (Button) findViewById(R.id.btnRefreshChoseMacIds);
+        confirmButton = (Button) findViewById(R.id.btnConfirmChoseMacIds);
+
+        confirmButton.setEnabled(false);
+        fetchPossibleAccessPoints();
 
         possibleAccessPointsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -82,6 +85,38 @@ public class ChooseDeterminantMacIdsActivity extends AppCompatActivity {
                 fetchPossibleAccessPoints();
             }
         });
+
+        confirmButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                createNewRoomWithMacIds();
+            }
+        });
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    private void createNewRoomWithMacIds() {
+
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... voids) {
+
+                try {
+                    viewModel.createNewRoom(getThreeMacIdsFromStringList(checkedMacIds));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+                Intent i = new Intent(getApplicationContext(), MeasurmentsActivity.class);
+                i.putExtra("roomName" ,viewModel.roomName);
+                startActivity(i);
+            }
+        }.execute();
     }
 
     @SuppressLint("StaticFieldLeak")
@@ -101,6 +136,16 @@ public class ChooseDeterminantMacIdsActivity extends AppCompatActivity {
                 populatePossibleAccesPointsOnListView();
             }
         }.execute();
+    }
+
+    private ThreeMacIds getThreeMacIdsFromStringList(List<String> list) {
+
+        ThreeMacIds result = new ThreeMacIds();
+        result.FirstMacId = list.get(0);
+        result.SecondMacId = list.get(1);
+        result.ThirdMacId = list.get(2);
+
+        return result;
     }
 
     private void populatePossibleAccesPointsOnListView() {

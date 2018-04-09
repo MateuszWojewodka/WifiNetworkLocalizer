@@ -110,6 +110,7 @@ public class ChooseAdminModeActivity extends AppCompatActivity {
                 super.onPostExecute(aVoid);
                 if (canCreateRoom[0]) {
                     Intent i = new Intent(getApplicationContext(), ChooseDeterminantMacIdsActivity.class);
+                    i.putExtra("roomName" ,roomNameEditText.getText().toString());
                     startActivity(i);
                 }
                 else

@@ -61,7 +61,7 @@ public class LocalizationLogic {
         return ServerHandler.INSTANCE.getNearestXYLocalizationPoint(roomId, threeRSSISignals);
     }
 
-    public void addRSSIMeasurmentInXYPoint(int roomId, String roomaName, Point point) throws IOException {
+    public ThreeRSSISignals addRSSIMeasurmentInXYPoint(int roomId, String roomaName, Point point) throws IOException {
 
         MeasurmentPoint measurmentPoint = new MeasurmentPoint();
 
@@ -75,6 +75,8 @@ public class LocalizationLogic {
 
         ServerHandler.INSTANCE
                 .addRSSIMeasurmentInXYPoint(roomId, measurmentPoint);
+
+        return currentAvgRSSISignals;
     }
 
     public List<WifiDevicesDetails> getAllWifiSignals(){
@@ -144,9 +146,6 @@ public class LocalizationLogic {
             else if (signal.BSSID.equals(determinantMacIds.ThirdMacId))
                 result.ThirdRSSISignal = signal.RSSI;
         }
-
-        //todo wywal to
-        result.SecondRSSISignal = "25";
 
         return result;
     }

@@ -46,7 +46,8 @@ public enum ServerHandler {
 
         String jsonPostString = gson.toJson(macIds);
 
-        server.doPostRequest("localization/rooms/" + roomName, jsonPostString);
+        String resource = "localization/rooms/" + roomName;
+        server.doPutRequest(resource, jsonPostString);
     }
 
     public void addRSSIMeasurmentInXYPoint(int roomId, MeasurmentPoint measurmentPoint) throws IOException {

@@ -7,7 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import skyandroid.wifinetworklocalizator.Model.DataTypes.Point;
+import skyandroid.wifinetworklocalizator.Model.DataTypes.RoomInfo;
 import skyandroid.wifinetworklocalizator.Model.DataTypes.ThreeMacIds;
+import skyandroid.wifinetworklocalizator.Model.DataTypes.ThreeRSSISignals;
 import skyandroid.wifinetworklocalizator.Model.HelperClasses.WifiDevicesDetails;
 import skyandroid.wifinetworklocalizator.Model.LocalizationLogic;
 import skyandroid.wifinetworklocalizator.Model.ServerHandler;
@@ -22,7 +24,9 @@ public class AdminClientViewModel implements ViewModel {
 
     public List<WifiDevicesDetails> possibleAccessPoints = new ArrayList<>();
     public String roomName = "";
-    public int roomId = 0;
+    public int roomId = -1;
+
+    public ThreeRSSISignals measurmentSignals = new ThreeRSSISignals();
 
     public AdminClientViewModel(AppCompatActivity ctx) {
         localizationLogic = new LocalizationLogic(ctx);
@@ -56,13 +60,23 @@ public class AdminClientViewModel implements ViewModel {
         return localizationLogic.checkIfRoomNameIsUnique(roomName);
     }
 
-    public void onClickedCreateNewRoomButton(String roomName, ThreeMacIds macIds) throws IOException {
+    public void createNewRoom(ThreeMacIds macIds) throws IOException {
 
-        roomName = roomName;
         ServerHandler.INSTANCE.putNewRoomWithDeterminantMacIds(roomName, macIds);
     }
 
-    public void onClickedButtonDoMeasurment(Point point) throws IOException {
-        localizationLogic.addRSSIMeasurmentInXYPoint(roomId, roomName, point);
+    public void doMeasurment(Point point) throws IOException {
+        if (roomId == -1)
+            fetchRoomId();
+        measurmentSignals = localizationLogic.addRSSIMeasurmentInXYPoint(roomId, roomName, point);
+    }
+
+    private void fetchRoomId() throws IOException {
+        List<RoomInfo> rooms = ServerHandler.INSTANCE.getPossibleRooms();
+        for (RoomInfo room: rooms
+                ) {
+            if (room.roomName.equals(roomName))
+                roomId = room.roomId;
+        }
     }
 }
