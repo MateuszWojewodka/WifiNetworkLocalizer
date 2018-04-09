@@ -19,7 +19,7 @@ import android.databinding.ObservableField;
 
 public class AnonymousClientViewModel implements ViewModel {
 
-    public ObservableField<Point> currentPoint = new ObservableField<>();
+    public Point currentPoint = new Point();
     public List<RoomInfo> possibleRooms = new ArrayList<>();
 
     private LocalizationLogic localizationLogic;
@@ -43,7 +43,7 @@ public class AnonymousClientViewModel implements ViewModel {
     public void onDestroy() {}
 
     public void onClickedButtonGetYourXYPoint() throws IOException {
-        currentPoint.set(localizationLogic.getNearestXYPointInAdditionToCurrentWifiSignals(roomName, roomId));
+        currentPoint = localizationLogic.getNearestXYPointInAdditionToCurrentWifiSignals(roomName, roomId);
     }
 
     public void fetchPossibleRooms() throws IOException {

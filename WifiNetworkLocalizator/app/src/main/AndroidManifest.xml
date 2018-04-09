@@ -21,6 +21,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".View.ChoosingRoomActivity"></activity>
+        <activity android:name=".View.LocalizationInRoomActivity"></activity>
     </application>
 
 </manifest>

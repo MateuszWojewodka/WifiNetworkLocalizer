@@ -1,6 +1,7 @@
 package skyandroid.wifinetworklocalizator.View;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -39,12 +40,14 @@ public class ChoosingRoomActivity extends AppCompatActivity {
         viewModel = new AnonymousClientViewModel(this);
 
         possibleRoomsListView = (ListView) findViewById(R.id.lvPossibleRooms);
-
         possibleRoomsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-
+                Intent i = new Intent(getApplicationContext(), LocalizationInRoomActivity.class);
+                i.putExtra("roomName", ((RoomInfo) adapterView.getItemAtPosition(position)).roomName);
+                i.putExtra("roomId", Integer.toString(((RoomInfo) adapterView.getItemAtPosition(position)).roomId));
+                startActivity(i);
             }
         });
 

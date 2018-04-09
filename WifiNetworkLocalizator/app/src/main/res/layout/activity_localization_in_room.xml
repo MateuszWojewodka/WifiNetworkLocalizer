@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/txtRoomDesc"
+        android:id="@+id/txtRoom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -48,15 +48,15 @@
         app:layout_constraintTop_toBottomOf="@+id/txtPointY" />
 
     <Button
-        android:id="@+id/btnCheckLocationDesc"
+        android:id="@+id/btnCheckLocalization"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginTop="44dp"
         android:text="Sprawdz Lokalizacje"
-        app:layout_constraintEnd_toEndOf="@+id/txtRoomDesc"
-        app:layout_constraintStart_toStartOf="@+id/txtRoomDesc"
-        app:layout_constraintTop_toBottomOf="@+id/txtRoomDesc" />
+        app:layout_constraintEnd_toEndOf="@+id/txtRoom"
+        app:layout_constraintStart_toStartOf="@+id/txtRoom"
+        app:layout_constraintTop_toBottomOf="@+id/txtRoom" />
 
     <TextView
         android:id="@+id/txtPointX"
@@ -86,9 +86,9 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="56dp"
         android:text="Twoje położenie:"
-        app:layout_constraintEnd_toEndOf="@+id/btnCheckLocationDesc"
+        app:layout_constraintEnd_toEndOf="@+id/btnCheckLocalization"
         app:layout_constraintHorizontal_bias="0.532"
-        app:layout_constraintStart_toStartOf="@+id/btnCheckLocationDesc"
-        app:layout_constraintTop_toBottomOf="@+id/btnCheckLocationDesc" />
+        app:layout_constraintStart_toStartOf="@+id/btnCheckLocalization"
+        app:layout_constraintTop_toBottomOf="@+id/btnCheckLocalization" />
 
 </android.support.constraint.ConstraintLayout>
