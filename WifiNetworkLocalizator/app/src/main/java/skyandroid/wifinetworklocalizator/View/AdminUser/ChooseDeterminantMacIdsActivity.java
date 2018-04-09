@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -14,6 +15,9 @@ import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import skyandroid.wifinetworklocalizator.Model.HelperClasses.WifiDevicesDetails;
 import skyandroid.wifinetworklocalizator.R;
@@ -31,7 +35,7 @@ public class ChooseDeterminantMacIdsActivity extends AppCompatActivity {
     Button confirmButton;
     Button refreshButton;
 
-    int checkedMacIdsCount = 0;
+    List<String> checkedMacIds = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,14 +47,38 @@ public class ChooseDeterminantMacIdsActivity extends AppCompatActivity {
         TextView RSSI = (TextView) findViewById(R.id.txtRSSIValueX);
 
         possibleAccessPointsListView = (ListView) findViewById(R.id.lvPossibleAccesPoints);
+
         confirmButton = (Button) findViewById(R.id.btnConfirmChoseMacIds);
+        confirmButton.setEnabled(false);
+
         refreshButton = (Button) findViewById(R.id.btnRefreshChoseMacIds);
 
+        possibleAccessPointsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                CheckBox chooseCheckBox = (CheckBox) view.findViewById(R.id.cbMIs);
+                String macId = ((WifiDevicesDetails) adapterView.getItemAtPosition(position)).BSSID;
 
+                if (chooseCheckBox.isChecked()) {
+                    chooseCheckBox.setChecked(false);
+                    subMacIdCount(macId);
+                }
+                else {
+                    if (checkedMacIds.size() >=3)
+                        Toast.makeText(getApplicationContext(), "Można wybrać maksymalnie 3 id.", Toast.LENGTH_SHORT).show();
+                    else {
+                        chooseCheckBox.setChecked(true);
+                        addMacIdCount(macId);
+                    }
+                }
+            }
+        });
 
         refreshButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                checkedMacIds.clear();
+                confirmButton.setEnabled(false);
                 fetchPossibleAccessPoints();
             }
         });
@@ -97,35 +125,27 @@ public class ChooseDeterminantMacIdsActivity extends AppCompatActivity {
                 SSID.setText(currentItem.SSID);
 
                 CheckBox chooseCheckBox = (CheckBox) convertView.findViewById(R.id.cbMIs);
-                chooseCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                        if (isChecked && checkedMacIdsCount >= 3) {
-                            compoundButton.setChecked(false);
-                            Toast.makeText(getApplicationContext(), "Można wybrać max 3 id!", Toast.LENGTH_SHORT).show();
-                        }
-                        else if (isChecked && checkedMacIdsCount < 3) {
-                            addMacIdCount();
-                        }
-                        else if (!isChecked)
-                            subMacIdCount();
-                    }
-                });
+
+                if (checkedMacIds.contains(currentItem.BSSID))
+                    chooseCheckBox.setChecked(true);
+                else
+                    chooseCheckBox.setChecked(false);
+
                 return convertView;
             }
         };
         possibleAccessPointsListView.setAdapter(adapter);
     }
 
-    void addMacIdCount() {
-        checkedMacIdsCount++;
-        if(checkedMacIdsCount>=3)
+    void addMacIdCount(String macId) {
+        checkedMacIds.add(macId);
+        if(checkedMacIds.size()>=3)
             confirmButton.setEnabled(true);
     }
 
-    void subMacIdCount() {
-        checkedMacIdsCount--;
-        if (checkedMacIdsCount<3)
+    void subMacIdCount(String macId) {
+        checkedMacIds.remove(macId);
+        if (checkedMacIds.size()<3)
             confirmButton.setEnabled(false);
     }
 }
