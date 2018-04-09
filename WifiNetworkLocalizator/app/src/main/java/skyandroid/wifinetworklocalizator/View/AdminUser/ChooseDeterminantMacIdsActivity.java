@@ -15,14 +15,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
-import java.io.IOException;
-
-import skyandroid.wifinetworklocalizator.Model.DataTypes.RoomInfo;
 import skyandroid.wifinetworklocalizator.Model.HelperClasses.WifiDevicesDetails;
 import skyandroid.wifinetworklocalizator.R;
-import skyandroid.wifinetworklocalizator.View.AnonymousUser.ChoosingRoomActivity;
 import skyandroid.wifinetworklocalizator.ViewModel.AdminClientViewModel;
 
 /**
@@ -46,9 +40,13 @@ public class ChooseDeterminantMacIdsActivity extends AppCompatActivity {
 
         viewModel = new AdminClientViewModel(this);
 
+        TextView RSSI = (TextView) findViewById(R.id.txtRSSIValueX);
+
         possibleAccessPointsListView = (ListView) findViewById(R.id.lvPossibleAccesPoints);
         confirmButton = (Button) findViewById(R.id.btnConfirmChoseMacIds);
         refreshButton = (Button) findViewById(R.id.btnRefreshChoseMacIds);
+
+
 
         refreshButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,25 +78,25 @@ public class ChooseDeterminantMacIdsActivity extends AppCompatActivity {
     private void populatePossibleAccesPointsOnListView() {
 
         ArrayAdapter<WifiDevicesDetails> adapter
-                = new ArrayAdapter<WifiDevicesDetails>(ChooseDeterminantMacIdsActivity.this, R.layout.scan_details, viewModel.possibleAccessPoints) {
+                = new ArrayAdapter<WifiDevicesDetails>(ChooseDeterminantMacIdsActivity.this, R.layout.scan_detailsdub, viewModel.possibleAccessPoints) {
 
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
 
                 if (convertView == null)
-                    convertView = getLayoutInflater().inflate(R.layout.scan_details, parent, false);
+                    convertView = getLayoutInflater().inflate(R.layout.scan_detailsdub, parent, false);
 
                 WifiDevicesDetails currentItem = viewModel.possibleAccessPoints.get(position);
 
-                TextView RSSI = (TextView) findViewById(R.id.txtRSSIValue);
-                TextView BSSI = (TextView) findViewById(R.id.txtBSSIDValue);
-                TextView SSID = (TextView) findViewById(R.id.txtSSIDValue);
+                TextView RSSI = (TextView) convertView.findViewById(R.id.txtRSSIVal);
+                TextView BSSI = (TextView) convertView.findViewById(R.id.txtBSSIDVal);
+                TextView SSID = (TextView) convertView.findViewById(R.id.txtSSIDVal);
 
                 RSSI.setText(currentItem.RSSI);
                 BSSI.setText(currentItem.BSSID);
                 SSID.setText(currentItem.SSID);
 
-                CheckBox chooseCheckBox = (CheckBox) findViewById(R.id.checkBoxMacIds);
+                CheckBox chooseCheckBox = (CheckBox) convertView.findViewById(R.id.cbMIs);
                 chooseCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
@@ -122,12 +120,12 @@ public class ChooseDeterminantMacIdsActivity extends AppCompatActivity {
     void addMacIdCount() {
         checkedMacIdsCount++;
         if(checkedMacIdsCount>=3)
-            confirmButton.setEnabled(false);
+            confirmButton.setEnabled(true);
     }
 
     void subMacIdCount() {
         checkedMacIdsCount--;
         if (checkedMacIdsCount<3)
-            confirmButton.setEnabled(true);
+            confirmButton.setEnabled(false);
     }
 }

@@ -7,7 +7,7 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/txtSSIDValueX"
+        android:id="@+id/txtSSIDVal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -16,24 +16,24 @@
         android:textAlignment="center"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/txtSSIDDescription"
-        app:layout_constraintStart_toEndOf="@+id/txtSSIDDescription"
-        app:layout_constraintTop_toTopOf="@+id/txtSSIDDescription"
+        app:layout_constraintBottom_toBottomOf="@+id/txtSSIDDes"
+        app:layout_constraintStart_toEndOf="@+id/txtSSIDDes"
+        app:layout_constraintTop_toTopOf="@+id/txtSSIDDes"
         app:layout_constraintVertical_bias="0.642" />
 
     <TextView
-        android:id="@+id/txtSSIDDescription"
+        android:id="@+id/txtSSIDDes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginStart="52dp"
         android:text="SSID"
         android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/txtRSSIDescription"
-        app:layout_constraintStart_toStartOf="@+id/checkBoxMacIds" />
+        app:layout_constraintBottom_toTopOf="@+id/txtRSSIDesc"
+        app:layout_constraintStart_toStartOf="@+id/cbMIs" />
 
     <TextView
-        android:id="@+id/txtRSSIValueX"
+        android:id="@+id/txtRSSIVal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="12dp"
@@ -41,13 +41,13 @@
         android:textAlignment="center"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/txtRSSIDescription"
-        app:layout_constraintLeft_toRightOf="@+id/txtRSSIDescription"
-        app:layout_constraintTop_toTopOf="@+id/txtRSSIDescription"
+        app:layout_constraintBottom_toBottomOf="@+id/txtRSSIDesc"
+        app:layout_constraintLeft_toRightOf="@+id/txtRSSIDesc"
+        app:layout_constraintTop_toTopOf="@+id/txtRSSIDesc"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/txtRSSIDescription"
+        android:id="@+id/txtRSSIDesc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -55,35 +55,35 @@
         android:layout_marginTop="8dp"
         android:text="RSSI"
         android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="@+id/checkBoxMacIds"
-        app:layout_constraintStart_toEndOf="@+id/checkBoxMacIds"
-        app:layout_constraintTop_toTopOf="@+id/checkBoxMacIds" />
+        app:layout_constraintBottom_toBottomOf="@+id/cbMIs"
+        app:layout_constraintStart_toEndOf="@+id/cbMIs"
+        app:layout_constraintTop_toTopOf="@+id/cbMIs" />
 
     <TextView
-        android:id="@+id/txtBSSIDDescription"
+        android:id="@+id/txtBSSIDDesc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="44dp"
         android:layout_marginTop="16dp"
         android:text="MAC ID"
-        app:layout_constraintStart_toStartOf="@+id/checkBoxMacIds"
-        app:layout_constraintTop_toBottomOf="@+id/txtRSSIDescription" />
+        app:layout_constraintStart_toStartOf="@+id/cbMIs"
+        app:layout_constraintTop_toBottomOf="@+id/txtRSSIDesc" />
 
     <TextView
-        android:id="@+id/txtBSSIDValueX"
+        android:id="@+id/txtBSSIDVal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:text="BSSID"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/txtBSSIDDescription"
-        app:layout_constraintLeft_toRightOf="@+id/txtBSSIDDescription"
-        app:layout_constraintTop_toTopOf="@+id/txtBSSIDDescription"
+        app:layout_constraintBottom_toBottomOf="@+id/txtBSSIDDesc"
+        app:layout_constraintLeft_toRightOf="@+id/txtBSSIDDesc"
+        app:layout_constraintTop_toTopOf="@+id/txtBSSIDDesc"
         app:layout_constraintVertical_bias="0.0" />
 
     <CheckBox
-        android:id="@+id/checkBoxMacIds"
+        android:id="@+id/cbMIs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"

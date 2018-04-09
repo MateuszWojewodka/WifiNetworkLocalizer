@@ -1,6 +1,8 @@
 package skyandroid.wifinetworklocalizator.View.AdminUser;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -58,6 +60,7 @@ public class ChooseAdminModeActivity extends AppCompatActivity {
             public void afterTextChanged(Editable editable) {
                 if (!editable.toString().trim().equals(""))
                     createNewRoomButton.setEnabled(true);
+                else createNewRoomButton.setEnabled(false);
             }
         });
 
@@ -70,17 +73,7 @@ public class ChooseAdminModeActivity extends AppCompatActivity {
         return new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                try {
-                    if (viewModel.checkIfRoomCanBeCreated(roomNameEditText.getText().toString())){
-                        Intent i = new Intent(getApplicationContext(), ChoosingRoomActivity.class);
-                        startActivity(i);
-                    }
-                    else
-                        Toast.makeText(getApplicationContext(), "Dana nazwa jest juz w użyciu.", Toast.LENGTH_SHORT).show();
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                tryCreateNewRoom();
             }
         };
     }
@@ -93,5 +86,35 @@ public class ChooseAdminModeActivity extends AppCompatActivity {
 
             }
         };
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    private void tryCreateNewRoom() {
+
+        final boolean[] canCreateRoom = {false};
+
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... voids) {
+
+                try {
+                    canCreateRoom[0] = viewModel.checkIfRoomCanBeCreated(roomNameEditText.getText().toString());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+                if (canCreateRoom[0]) {
+                    Intent i = new Intent(getApplicationContext(), ChooseDeterminantMacIdsActivity.class);
+                    startActivity(i);
+                }
+                else
+                    Toast.makeText(getApplicationContext(), "Dana nazwa jest juz w użyciu.", Toast.LENGTH_SHORT).show();
+            }
+        }.execute();
     }
 }
