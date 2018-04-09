@@ -111,6 +111,9 @@ public class LocalizationLogic {
                 result.ThirdRSSISignal = signal.RSSI;
         }
 
+        //todo wywal to
+        result.SecondRSSISignal = "25";
+
         return result;
     }
 }

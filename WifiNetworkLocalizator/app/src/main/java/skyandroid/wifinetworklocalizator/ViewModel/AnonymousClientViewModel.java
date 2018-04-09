@@ -23,8 +23,8 @@ public class AnonymousClientViewModel implements ViewModel {
     public List<RoomInfo> possibleRooms = new ArrayList<>();
 
     private LocalizationLogic localizationLogic;
-    private String roomName = "";
-    private int roomId = 0;
+    public String roomName = "";
+    public int roomId = 0;
 
     public AnonymousClientViewModel(AppCompatActivity ctx) {
         localizationLogic = new LocalizationLogic(ctx);

@@ -60,7 +60,7 @@ public enum ServerHandler {
 
     public Point getNearestXYLocalizationPoint(int roomId, ThreeRSSISignals measurmentSignals) throws IOException {
 
-        String resource = "localization/rooms" + roomId + "/point";
+        String resource = "localization/rooms/" + roomId + "/point";
         String query =
                 "?firstMacId=" + measurmentSignals.FirstRSSISignal +
                 "&secondMacId=" + measurmentSignals.SecondRSSISignal +

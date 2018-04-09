@@ -46,8 +46,8 @@ public class WifiHandler {
 
         synchronized (wifiScanningLock) {
 
-            wifi.startScan();
             scanningFinished = false;
+            wifi.startScan();
 
             while(!scanningFinished)
                 try {
