@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 
 import skyandroid.wifinetworklocalizator.R;
+import skyandroid.wifinetworklocalizator.View.AdminUser.ChooseAdminModeActivity;
+import skyandroid.wifinetworklocalizator.View.AnonymousUser.ChoosingRoomActivity;
 
 public class StartUpActivity extends AppCompatActivity {
 
@@ -25,6 +27,14 @@ public class StartUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(getApplicationContext(), ChoosingRoomActivity.class);
+                startActivity(i);
+            }
+        });
+
+        adminButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(), ChooseAdminModeActivity.class);
                 startActivity(i);
             }
         });

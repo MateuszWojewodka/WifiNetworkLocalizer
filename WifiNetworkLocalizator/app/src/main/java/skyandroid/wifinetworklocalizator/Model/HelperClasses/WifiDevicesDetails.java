@@ -10,6 +10,8 @@ public class WifiDevicesDetails {
     public String RSSI;
     public String BSSID;
 
+    public WifiDevicesDetails() {}
+
     public WifiDevicesDetails(String SSID, String RSSI, String BSSID) {
         this.SSID = SSID;
         this.RSSI = RSSI;

@@ -1,4 +1,4 @@
-package skyandroid.wifinetworklocalizator.View;
+package skyandroid.wifinetworklocalizator.View.AnonymousUser;
 
 import android.annotation.SuppressLint;
 import android.os.AsyncTask;

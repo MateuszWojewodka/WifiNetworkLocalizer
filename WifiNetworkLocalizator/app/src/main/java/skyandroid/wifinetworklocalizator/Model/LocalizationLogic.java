@@ -7,6 +7,7 @@ import java.util.List;
 
 import skyandroid.wifinetworklocalizator.Model.DataTypes.MeasurmentPoint;
 import skyandroid.wifinetworklocalizator.Model.DataTypes.Point;
+import skyandroid.wifinetworklocalizator.Model.DataTypes.RoomInfo;
 import skyandroid.wifinetworklocalizator.Model.DataTypes.ThreeMacIds;
 import skyandroid.wifinetworklocalizator.Model.DataTypes.ThreeRSSISignals;
 import skyandroid.wifinetworklocalizator.Model.HelperClasses.WifiDevicesDetails;
@@ -23,6 +24,35 @@ public class LocalizationLogic {
     public LocalizationLogic(AppCompatActivity ctx) {
 
         wifiHandler = new WifiHandler(ctx);
+    }
+
+    public int createNewRoomAndGetItsId(String roomName, ThreeMacIds macIds) throws Exception {
+
+        int id = 0;
+        ServerHandler.INSTANCE.putNewRoomWithDeterminantMacIds(roomName, macIds);
+
+        List<RoomInfo> allRooms = ServerHandler.INSTANCE.getPossibleRooms();
+
+        for (RoomInfo room: allRooms
+                ) {
+            if (room.roomName.equals(roomName))
+                id = room.roomId;
+        }
+
+        return id;
+    }
+
+    public boolean checkIfRoomNameIsUnique(String roomName) throws Exception {
+
+        List<RoomInfo> allRooms = ServerHandler.INSTANCE.getPossibleRooms();
+
+        for (RoomInfo room: allRooms
+                ) {
+            if (room.roomName.equals(roomName))
+                return false;
+        }
+
+        return true;
     }
 
     public Point getNearestXYPointInAdditionToCurrentWifiSignals(String roomName, int roomId) throws IOException {
@@ -45,6 +75,10 @@ public class LocalizationLogic {
 
         ServerHandler.INSTANCE
                 .addRSSIMeasurmentInXYPoint(roomId, measurmentPoint);
+    }
+
+    public List<WifiDevicesDetails> getAllWifiSignals(){
+        return wifiHandler.getWifiDevicesSignals();
     }
 
     private ThreeRSSISignals getAverageOfCurrentThreeDeterminantRSSISignalsMeasurments(String roomName) throws IOException {

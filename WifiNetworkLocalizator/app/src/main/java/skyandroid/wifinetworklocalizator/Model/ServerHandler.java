@@ -42,7 +42,7 @@ public enum ServerHandler {
         return gson.fromJson(jsonString, ThreeMacIds.class);
     }
 
-    public void putNewRoomDeterminantMacIds(String roomName, ThreeMacIds macIds) throws IOException {
+    public void putNewRoomWithDeterminantMacIds(String roomName, ThreeMacIds macIds) throws IOException {
 
         String jsonPostString = gson.toJson(macIds);
 

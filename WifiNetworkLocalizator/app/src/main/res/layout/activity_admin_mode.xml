@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/edtRoomNameAdminMode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="100dp"
+        android:ems="10"
+        android:hint="Wprowadź nazwę"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnAddNewRoomAdminMode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Dodaj nowe"
+        app:layout_constraintTop_toBottomOf="@+id/edtRoomNameAdminMode"
+        tools:layout_editor_absoluteX="136dp" />
+
+    <Button
+        android:id="@+id/btnUseExsistingAdminMode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="52dp"
+        android:text="Użyj istniejące"
+        app:layout_constraintEnd_toEndOf="@+id/btnAddNewRoomAdminMode"
+        app:layout_constraintHorizontal_bias="0.628"
+        app:layout_constraintStart_toStartOf="@+id/btnAddNewRoomAdminMode"
+        app:layout_constraintTop_toBottomOf="@+id/btnAddNewRoomAdminMode" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dodaj nowe pomieszczenie lub \nzrób pomiary dla istniejacego:"
+        android:textStyle="italic"
+        tools:layout_editor_absoluteX="95dp"
+        tools:layout_editor_absoluteY="48dp" />
+</android.support.constraint.ConstraintLayout>

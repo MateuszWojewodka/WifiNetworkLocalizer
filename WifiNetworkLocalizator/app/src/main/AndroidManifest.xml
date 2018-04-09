@@ -20,8 +20,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".View.ChoosingRoomActivity"></activity>
-        <activity android:name=".View.LocalizationInRoomActivity"></activity>
+        <activity android:name=".View.AnonymousUser.ChoosingRoomActivity"></activity>
+        <activity android:name=".View.AnonymousUser.LocalizationInRoomActivity"></activity>
+        <activity android:name=".View.AdminUser.ChooseAdminModeActivity"></activity>
+        <activity android:name=".View.AdminUser.ChooseDeterminantMacIdsActivity"/>
     </application>
 
 </manifest>
