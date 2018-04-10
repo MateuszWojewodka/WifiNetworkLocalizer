@@ -50,6 +50,7 @@ public class MeasurmentsActivity extends AppCompatActivity {
 
         Bundle b = getIntent().getExtras();
         viewModel.roomName = b.getString("roomName");
+        viewModel.roomId = b.getString("roomId") == null ? 0 : Integer.parseInt(b.getString("roomId"));
 
         measureButton = (Button) findViewById(R.id.btnDoMeasurment);
 

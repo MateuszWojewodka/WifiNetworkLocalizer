@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import skyandroid.wifinetworklocalizator.Model.DataTypes.RoomInfo;
 import skyandroid.wifinetworklocalizator.R;
 import skyandroid.wifinetworklocalizator.View.AnonymousUser.ChoosingRoomActivity;
 import skyandroid.wifinetworklocalizator.ViewModel.AdminClientViewModel;
@@ -83,7 +84,8 @@ public class ChooseAdminModeActivity extends AppCompatActivity {
         return new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent i = new Intent(getApplicationContext(), skyandroid.wifinetworklocalizator.View.AdminUser.ChoosingRoomActivity.class);
+                startActivity(i);
             }
         };
     }

@@ -21,6 +21,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".View.AnonymousUser.ChoosingRoomActivity"></activity>
+        <activity android:name=".View.AdminUser.ChoosingRoomActivity"/>
         <activity android:name=".View.AnonymousUser.LocalizationInRoomActivity"></activity>
         <activity android:name=".View.AdminUser.ChooseAdminModeActivity"></activity>
         <activity android:name=".View.AdminUser.ChooseDeterminantMacIdsActivity"/>
