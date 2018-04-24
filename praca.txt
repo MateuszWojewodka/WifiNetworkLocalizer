@@ -1,0 +1,20 @@
+W.
+	Patrząc na wyniki systemu, można stwierdzić, że spełnia swoją funkcjonalność.
+	Na pewno jej główną wadą jest zbyt mała dokładność. Może to wynikać z wielu 
+	czynników:
+	- zbyt dyża niedokładność access pointów
+	- zbyt duża niedokładność odbiornika
+	- zjawisko fadingu
+	- GUI użytkownika
+	- poleganie tylko na trzech access pointach
+	Ostatni punkt jest główną wadą systemu. Zastosowanie większej
+	liczby access pointów, zaowocowałby, zarówno zwiększoną wydajnością, jak i 
+	niezawodnością systemu. Poprzez niezawodność, mam na myśli ciągłość działania aplikacji,
+	w przypadku wyłączenia jednego z access pointów. Dla systemu, który opisuje niniejsza
+	praca, miałobyto skutek katastrofalny, gdyż każdy z trzech pomiarowych access pointów
+	jest równie ważny i niezbędny do poprawnego działania systemu.
+	Co do GUI, rozwiązaniem byłaby implementacja graficznej reprezentacji pomieszczenia,
+	w którym obecnie znajduje się klient. Następnie klient odpytując serwer serwisami, do pobrania 
+	najbliższego punktu wyświetlałby na mapie pomieszczenia, swoje obecne połozenie. 
+	Mogłoby zostać to wykonane na wzór map Google
+	
