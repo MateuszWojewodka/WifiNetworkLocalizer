@@ -29,6 +29,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
@@ -61,8 +64,8 @@
     <Compile Include="Database Classes\RoomInfo.cs" />
     <Compile Include="Database Classes\Point.cs" />
     <Compile Include="Database Classes\RSSIMeasurmentPoint.cs" />
-    <Compile Include="Database Classes\ThreeMacIds.cs" />
-    <Compile Include="Database Classes\ThreeRSSISignals.cs" />
+    <Compile Include="Database Classes\FourMacIds.cs" />
+    <Compile Include="Database Classes\FourRSSISignals.cs" />
     <Compile Include="Interfaces\ILocalization.cs" />
     <Compile Include="Logic\DatabaseHandler.cs" />
     <Compile Include="Logic\Localization.cs" />

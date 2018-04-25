@@ -70,7 +70,7 @@ namespace WifiNetworkLocalizer
             var config = new MapperConfiguration
                 (e =>
                 {
-                    e.CreateMap<DeterminantMacIds, ThreeMacIds>();
+                    e.CreateMap<DeterminantMacIds, FourMacIds>();
                 });
 
             return config.CreateMapper();

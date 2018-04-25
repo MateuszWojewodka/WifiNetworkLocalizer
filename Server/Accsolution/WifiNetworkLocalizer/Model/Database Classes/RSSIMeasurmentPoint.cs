@@ -17,6 +17,7 @@ namespace Model.Entity_Classes
         public int FirstMacIdRSSI { get; set; }
         public int SecondMacIdRSSI { get; set; }
         public int ThirdMacIdRSSI { get; set; }
+        public int FourthMacIdRSSI { get; set; }
         public int X { get; set; }
         public int Y { get; set; }
         [ForeignKey("DeterminantMacIds")]

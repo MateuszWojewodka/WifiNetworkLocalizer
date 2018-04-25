@@ -15,7 +15,7 @@ namespace WifiNetworkLocalizer.Model.Database_Handlers
 {
     public class Localization : ILocalization
     {
-        public Point GetNearestXYLocalizationPoint(int id, ThreeRSSISignals threeMacIds)
+        public Point GetNearestXYLocalizationPoint(int id, FourRSSISignals threeMacIds)
         {
             using (var ctx = new WifiLocalizerContext())
             {
@@ -60,7 +60,7 @@ namespace WifiNetworkLocalizer.Model.Database_Handlers
             }
         }
 
-        public DeterminantMacIds GetThreeDeterminantMacIds(string roomName)
+        public DeterminantMacIds GetFourDeterminantMacIds(string roomName)
         {
             using (var ctx = new WifiLocalizerContext())
             {
@@ -72,11 +72,11 @@ namespace WifiNetworkLocalizer.Model.Database_Handlers
             }
         }
 
-        public void SetThreeMeasurmentMacIds(DeterminantMacIds threeMacIds)
+        public void SetFourMeasurmentMacIds(DeterminantMacIds fourMacIds)
         {
             using (var ctx = new WifiLocalizerContext())
             {
-                DatabaseHandler.AddElementToDataBase(ctx, ctx.DeterminantMacIds, threeMacIds);
+                DatabaseHandler.AddElementToDataBase(ctx, ctx.DeterminantMacIds, fourMacIds);
             }
         }
 
@@ -93,16 +93,17 @@ namespace WifiNetworkLocalizer.Model.Database_Handlers
 
         #region PRIVATE_METHODS
 
-        private Expression<Func<RSSIMeasurmentPoint, double>> CalculteVectorsDiffExpression(ThreeRSSISignals threeMacIds)
+        private Expression<Func<RSSIMeasurmentPoint, double>> CalculteVectorsDiffExpression(FourRSSISignals fourMacIds)
         {
             return
                 x =>
                 //sqare root of
                 (Math.Pow(
                     //second powers sum
-                    Math.Pow((x.FirstMacIdRSSI - threeMacIds.FirstMacIdRSSI), 2) +
-                    Math.Pow((x.SecondMacIdRSSI - threeMacIds.SecondMacIdRSSI), 2) +
-                    Math.Pow((x.ThirdMacIdRSSI - threeMacIds.ThirdMacIdRSSI), 2)
+                    Math.Pow((x.FirstMacIdRSSI - fourMacIds.FirstMacIdRSSI), 2) +
+                    Math.Pow((x.SecondMacIdRSSI - fourMacIds.SecondMacIdRSSI), 2) +
+                    Math.Pow((x.ThirdMacIdRSSI - fourMacIds.ThirdMacIdRSSI), 2) +
+                    Math.Pow((x.FourthMacIdRSSI - fourMacIds.FourthMacIdRRSI), 2)
                     , 0.5));
         }
 

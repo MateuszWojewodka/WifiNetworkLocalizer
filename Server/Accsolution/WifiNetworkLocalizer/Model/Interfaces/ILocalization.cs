@@ -11,13 +11,13 @@ namespace WifiNetworkLocalizer.Model.Database_Handlers
 {
     public interface ILocalization
     {
-        Point GetNearestXYLocalizationPoint(int id, ThreeRSSISignals threeMacIds);
+        Point GetNearestXYLocalizationPoint(int id, FourRSSISignals threeMacIds);
 
-        DeterminantMacIds GetThreeDeterminantMacIds(string roomName);
+        DeterminantMacIds GetFourDeterminantMacIds(string roomName);
 
         List<RoomInfo> GetPossibleRooms();
 
-        void SetThreeMeasurmentMacIds(DeterminantMacIds threeMacIds);
+        void SetFourMeasurmentMacIds(DeterminantMacIds threeMacIds);
 
         void AddRSSIMeasurmentInXYPoint(RSSIMeasurmentPoint RSSIMeasurmentPoint);
     }

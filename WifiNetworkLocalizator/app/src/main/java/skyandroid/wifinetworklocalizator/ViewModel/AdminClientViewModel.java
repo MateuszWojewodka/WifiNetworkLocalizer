@@ -24,7 +24,7 @@ public class AdminClientViewModel implements ViewModel {
 
     public List<WifiDevicesDetails> possibleAccessPoints = new ArrayList<>();
     public String roomName = "";
-    public int roomId = -1;
+    public int roomId = 0;
 
     public ThreeRSSISignals measurmentSignals = new ThreeRSSISignals();
 
@@ -66,7 +66,7 @@ public class AdminClientViewModel implements ViewModel {
     }
 
     public void doMeasurment(Point point) throws IOException {
-        if (roomId == -1)
+        if (roomId == 0)
             fetchRoomId();
         measurmentSignals = localizationLogic.addRSSIMeasurmentInXYPoint(roomId, roomName, point);
     }

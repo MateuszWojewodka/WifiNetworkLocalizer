@@ -16,7 +16,7 @@ public class HttpCommunicationHandler {
 
     private OkHttpClient client = new OkHttpClient();
     private final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
-    private final String baseAddress = "http://192.168.173.1:1471/";
+    private final String baseAddress = "http://192.168.137.1:1471/";
 
     public String doGetRequest(String resource) throws IOException {
 

@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace Model.Database_Classes
 {
-    public class ThreeRSSISignals
+    public class FourRSSISignals
     {
         public int FirstMacIdRSSI { get; set; }
         public int SecondMacIdRSSI { get; set; }
         public int ThirdMacIdRSSI { get; set; }
+        public int FourthMacIdRRSI { get; set; }
     }
 }

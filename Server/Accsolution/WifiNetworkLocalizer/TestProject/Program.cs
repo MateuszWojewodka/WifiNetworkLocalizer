@@ -25,7 +25,7 @@ namespace TestProject
             try
             {
                 //adding new room
-                ThreeMacIds determinantMacIds = new ThreeMacIds
+                FourMacIds determinantMacIds = new FourMacIds
                 {
                     FirstMacId = "first",
                     SecondMacId = "second",
@@ -88,19 +88,19 @@ namespace TestProject
             return rooms;
         }
 
-        static async Task<ThreeMacIds> GetThreeMacIds(HttpClient client, string path)
+        static async Task<FourMacIds> GetThreeMacIds(HttpClient client, string path)
         {
-            ThreeMacIds macIds = null;
+            FourMacIds macIds = null;
             HttpResponseMessage response = await client.GetAsync(path);
 
             if (response.IsSuccessStatusCode)
             {
-                macIds = await response.Content.ReadAsAsync<ThreeMacIds>();
+                macIds = await response.Content.ReadAsAsync<FourMacIds>();
             }
             return macIds;
         }
 
-        static async Task PutNewRoomInfo(HttpClient client, string path, ThreeMacIds determinantMacIds)
+        static async Task PutNewRoomInfo(HttpClient client, string path, FourMacIds determinantMacIds)
         {
             HttpResponseMessage response = await client.PutAsJsonAsync(path, determinantMacIds);
             response.EnsureSuccessStatusCode();

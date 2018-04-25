@@ -33,9 +33,6 @@ public class MeasurmentsActivity extends AppCompatActivity {
     EditText pointXEditText;
     EditText pointYEditText;
 
-    TextView firstMacIdTextView;
-    TextView fecondMacIdTextView;
-    TextView thirdMacIdTextView;
 
     TextView firstRSSITextView;
     TextView secondRSSITextView;

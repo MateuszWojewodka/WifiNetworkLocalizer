@@ -16,6 +16,7 @@ namespace WifiNetworkLocalizer.Model.Message_Types
         public string FirstMacId { get; set; }
         public string SecondMacId { get; set; }
         public string ThirdMacId { get; set; }
+        public string FourthMacId { get; set; }
         public string RoomName { get; set; }
     }
 }

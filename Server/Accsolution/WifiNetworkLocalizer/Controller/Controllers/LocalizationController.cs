@@ -36,20 +36,20 @@ namespace WifiNetworkLocalizer.Controller
 
         [HttpGet]
         [Route("rooms/{roomName}")] //?roomName=MCHTR
-        public IHttpActionResult GetThreeDeterminantMacIds([FromUri] string roomName)
+        public IHttpActionResult GetFourDeterminantMacIds([FromUri] string roomName)
         {
-            var data = _localizationServices.GetThreeDeterminantMacIds(roomName);
+            var data = _localizationServices.GetFourDeterminantMacIds(roomName);
 
-            return Ok(_mapperServices.Map<DeterminantMacIds, ThreeMacIds>(data));
+            return Ok(_mapperServices.Map<DeterminantMacIds, FourMacIds>(data));
         }
 
         [HttpPut]
         [Route("rooms/{roomName}")]
-        public IHttpActionResult PutNewRoomDeterminantMacIds([FromUri] string roomName, [FromBody] DeterminantMacIds threeMacIds)
+        public IHttpActionResult PutNewRoomDeterminantMacIds([FromUri] string roomName, [FromBody] DeterminantMacIds fourMacIds)
         {
-            threeMacIds.RoomName = roomName;
+            fourMacIds.RoomName = roomName;
 
-            _localizationServices.SetThreeMeasurmentMacIds(threeMacIds);
+            _localizationServices.SetFourMeasurmentMacIds(fourMacIds);
 
             return Ok();
         }
@@ -68,13 +68,14 @@ namespace WifiNetworkLocalizer.Controller
         [HttpGet]
         [Route("rooms/{id}/point")] //?firstMacId=xxx&secondMacId=yyy&thirdMacId=zzz
         public IHttpActionResult GetNearestXYLocalizationPoint
-            ([FromUri] int id, [FromUri] int firstMacId, [FromUri] int secondMacId, [FromUri] int thirdMacId)
+            ([FromUri] int id, [FromUri] int firstMacId, [FromUri] int secondMacId, [FromUri] int thirdMacId, [FromUri] int fourthMacId)
         {
-            var request = new ThreeRSSISignals
+            var request = new FourRSSISignals
             {
                 FirstMacIdRSSI = firstMacId,
                 SecondMacIdRSSI = secondMacId,
-                ThirdMacIdRSSI = thirdMacId
+                ThirdMacIdRSSI = thirdMacId,
+                FourthMacIdRRSI = fourthMacId
             };
 
             var data = _localizationServices.GetNearestXYLocalizationPoint(id, request);
