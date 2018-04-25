@@ -9,6 +9,7 @@ public class MeasurmentPoint {
     public String FirstMacIdRSSI;
     public String SecondMacIdRSSI;
     public String ThirdMacIdRSSI;
+    public String FourthMacIdRSSI;
     public int X;
     public int Y;
 }

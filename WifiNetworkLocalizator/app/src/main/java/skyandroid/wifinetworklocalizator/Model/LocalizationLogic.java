@@ -8,8 +8,8 @@ import java.util.List;
 import skyandroid.wifinetworklocalizator.Model.DataTypes.MeasurmentPoint;
 import skyandroid.wifinetworklocalizator.Model.DataTypes.Point;
 import skyandroid.wifinetworklocalizator.Model.DataTypes.RoomInfo;
-import skyandroid.wifinetworklocalizator.Model.DataTypes.ThreeMacIds;
-import skyandroid.wifinetworklocalizator.Model.DataTypes.ThreeRSSISignals;
+import skyandroid.wifinetworklocalizator.Model.DataTypes.FourMacIds;
+import skyandroid.wifinetworklocalizator.Model.DataTypes.FourRSSISignals;
 import skyandroid.wifinetworklocalizator.Model.HelperClasses.WifiDevicesDetails;
 import skyandroid.wifinetworklocalizator.Model.HelperClasses.WifiHandler;
 
@@ -26,7 +26,7 @@ public class LocalizationLogic {
         wifiHandler = new WifiHandler(ctx);
     }
 
-    public int createNewRoomAndGetItsId(String roomName, ThreeMacIds macIds) throws Exception {
+    public int createNewRoomAndGetItsId(String roomName, FourMacIds macIds) throws Exception {
 
         int id = 0;
         ServerHandler.INSTANCE.putNewRoomWithDeterminantMacIds(roomName, macIds);
@@ -57,15 +57,15 @@ public class LocalizationLogic {
 
     public Point getNearestXYPointInAdditionToCurrentWifiSignals(String roomName, int roomId) throws IOException {
 
-        ThreeRSSISignals threeRSSISignals = getAverageOfCurrentThreeDeterminantRSSISignalsMeasurments(roomName);
-        return ServerHandler.INSTANCE.getNearestXYLocalizationPoint(roomId, threeRSSISignals);
+        FourRSSISignals fourRSSISignals = getAverageOfCurrentFourDeterminantRSSISignalsMeasurments(roomName);
+        return ServerHandler.INSTANCE.getNearestXYLocalizationPoint(roomId, fourRSSISignals);
     }
 
-    public ThreeRSSISignals addRSSIMeasurmentInXYPoint(int roomId, String roomaName, Point point) throws IOException {
+    public FourRSSISignals addRSSIMeasurmentInXYPoint(int roomId, String roomaName, Point point) throws IOException {
 
         MeasurmentPoint measurmentPoint = new MeasurmentPoint();
 
-        ThreeRSSISignals currentAvgRSSISignals = getAverageOfCurrentThreeDeterminantRSSISignalsMeasurments(roomaName);
+        FourRSSISignals currentAvgRSSISignals = getAverageOfCurrentFourDeterminantRSSISignalsMeasurments(roomaName);
 
         measurmentPoint.FirstMacIdRSSI = currentAvgRSSISignals.FirstRSSISignal;
         measurmentPoint.SecondMacIdRSSI = currentAvgRSSISignals.SecondRSSISignal;
@@ -83,59 +83,62 @@ public class LocalizationLogic {
         return wifiHandler.getWifiDevicesSignals();
     }
 
-    private ThreeRSSISignals getAverageOfCurrentThreeDeterminantRSSISignalsMeasurments(String roomName) throws IOException {
+    private FourRSSISignals getAverageOfCurrentFourDeterminantRSSISignalsMeasurments(String roomName) throws IOException {
 
-        int measurmentCount = 3;
+        int measurmentCount = 4;
 
-        ThreeRSSISignals[] signalMeasurments
+        FourRSSISignals[] signalMeasurments
                 = getSeveralCurrentDeterminantSignalsRSSIMeasurments(roomName, measurmentCount);
 
         return getAverageOfRSSISignalsMeasurments(signalMeasurments);
     }
 
-    private ThreeRSSISignals getAverageOfRSSISignalsMeasurments(ThreeRSSISignals[] RSSISignals) {
+    private FourRSSISignals getAverageOfRSSISignalsMeasurments(FourRSSISignals[] RSSISignals) {
 
-        ThreeRSSISignals result = new ThreeRSSISignals();
+        FourRSSISignals result = new FourRSSISignals();
 
         int firstSignalsSum = 0;
         int secondSignalsSum = 0;
         int thirdSignalsSum = 0;
+        int fourthSignalsSum = 0;
 
         for(int i = 0; i<RSSISignals.length; i++) {
             firstSignalsSum += Integer.parseInt(RSSISignals[i].FirstRSSISignal);
             secondSignalsSum += Integer.parseInt(RSSISignals[i].SecondRSSISignal);
             thirdSignalsSum += Integer.parseInt(RSSISignals[i].ThirdRSSISignal);
+            fourthSignalsSum += Integer.parseInt(RSSISignals[i].FourthRSSISignal);
         }
 
         result.FirstRSSISignal = Integer.toString(firstSignalsSum/RSSISignals.length);
         result.SecondRSSISignal = Integer.toString(secondSignalsSum/RSSISignals.length);
         result.ThirdRSSISignal = Integer.toString(thirdSignalsSum/RSSISignals.length);
+        result.FourthRSSISignal = Integer.toString(fourthSignalsSum/RSSISignals.length);
 
         return result;
     }
 
-    private ThreeRSSISignals[] getSeveralCurrentDeterminantSignalsRSSIMeasurments(String roomName, int measurmentCount) throws IOException {
+    private FourRSSISignals[] getSeveralCurrentDeterminantSignalsRSSIMeasurments(String roomName, int measurmentCount) throws IOException {
 
-        ThreeMacIds determinantMacIds = ServerHandler.INSTANCE.getThreeDeterminantMacIds(roomName);
-        ThreeRSSISignals[] RSSISignals = new ThreeRSSISignals[measurmentCount];
+        FourMacIds determinantMacIds = ServerHandler.INSTANCE.getFourDeterminantMacIds(roomName);
+        FourRSSISignals[] RSSISignals = new FourRSSISignals[measurmentCount];
 
         for(int i=0; i<measurmentCount; i++) {
-            RSSISignals[i] = getThreeCurrentDeterminantRSSISignal(roomName, determinantMacIds);
+            RSSISignals[i] = getFourCurrentDeterminantRSSISignal(roomName, determinantMacIds);
         }
 
         return RSSISignals;
     }
 
-    private ThreeRSSISignals getThreeCurrentDeterminantRSSISignal(String roomName, ThreeMacIds determinantMacIds) {
+    private FourRSSISignals getFourCurrentDeterminantRSSISignal(String roomName, FourMacIds determinantMacIds) {
 
         List<WifiDevicesDetails> wifiDevicesSignals = wifiHandler.getWifiDevicesSignals();
         return filterDeterminantSignals(roomName, wifiDevicesSignals, determinantMacIds);
     }
 
-    private ThreeRSSISignals filterDeterminantSignals
-            (String roomName, List<WifiDevicesDetails> allWifiSignals, ThreeMacIds determinantMacIds) {
+    private FourRSSISignals filterDeterminantSignals
+            (String roomName, List<WifiDevicesDetails> allWifiSignals, FourMacIds determinantMacIds) {
 
-        ThreeRSSISignals result = new ThreeRSSISignals();
+        FourRSSISignals result = new FourRSSISignals();
 
         for (WifiDevicesDetails signal : allWifiSignals) {
 
@@ -145,6 +148,8 @@ public class LocalizationLogic {
                 result.SecondRSSISignal = signal.RSSI;
             else if (signal.BSSID.equals(determinantMacIds.ThirdMacId))
                 result.ThirdRSSISignal = signal.RSSI;
+            else if (signal.BSSID.equals(determinantMacIds.FourthMacId))
+                result.FourthRSSISignal = signal.RSSI;
         }
 
         return result;

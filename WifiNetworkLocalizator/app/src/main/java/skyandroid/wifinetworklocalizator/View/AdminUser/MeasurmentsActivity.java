@@ -37,6 +37,7 @@ public class MeasurmentsActivity extends AppCompatActivity {
     TextView firstRSSITextView;
     TextView secondRSSITextView;
     TextView thirdRSSITextView;
+    TextView fourthRSSITextView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -57,6 +58,7 @@ public class MeasurmentsActivity extends AppCompatActivity {
         firstRSSITextView = (TextView) findViewById(R.id.txtFirstRSSI);
         secondRSSITextView = (TextView) findViewById(R.id.txtSecondRSSI);
         thirdRSSITextView = (TextView) findViewById(R.id.txtThirdRSSI);
+        fourthRSSITextView = (TextView) findViewById(R.id.txtFourthMacIds);
 
         pointXEditText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -133,6 +135,7 @@ public class MeasurmentsActivity extends AppCompatActivity {
                 firstRSSITextView.setText(viewModel.measurmentSignals.FirstRSSISignal);
                 secondRSSITextView.setText(viewModel.measurmentSignals.SecondRSSISignal);
                 thirdRSSITextView.setText(viewModel.measurmentSignals.ThirdRSSISignal);
+                fourthRSSITextView.setText(viewModel.measurmentSignals.FourthRSSISignal);
                 Toast.makeText(getApplicationContext(), "Pomiar wysłano do bazy danych.", Toast.LENGTH_SHORT).show();
 
                 pointXEditText.setText("");

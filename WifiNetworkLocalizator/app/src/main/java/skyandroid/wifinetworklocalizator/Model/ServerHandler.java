@@ -5,14 +5,13 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import skyandroid.wifinetworklocalizator.Model.DataTypes.MeasurmentPoint;
 import skyandroid.wifinetworklocalizator.Model.DataTypes.Point;
 import skyandroid.wifinetworklocalizator.Model.DataTypes.RoomInfo;
-import skyandroid.wifinetworklocalizator.Model.DataTypes.ThreeMacIds;
-import skyandroid.wifinetworklocalizator.Model.DataTypes.ThreeRSSISignals;
+import skyandroid.wifinetworklocalizator.Model.DataTypes.FourMacIds;
+import skyandroid.wifinetworklocalizator.Model.DataTypes.FourRSSISignals;
 import skyandroid.wifinetworklocalizator.Model.HelperClasses.HttpCommunicationHandler;
 
 /**
@@ -35,14 +34,14 @@ public enum ServerHandler {
         return gson.fromJson(jsonString, new TypeToken<List<RoomInfo>>(){}.getType());
     }
 
-    public ThreeMacIds getThreeDeterminantMacIds(String roomName) throws IOException {
+    public FourMacIds getFourDeterminantMacIds(String roomName) throws IOException {
 
         String jsonString = server.doGetRequest("localization/rooms/" + roomName);
 
-        return gson.fromJson(jsonString, ThreeMacIds.class);
+        return gson.fromJson(jsonString, FourMacIds.class);
     }
 
-    public void putNewRoomWithDeterminantMacIds(String roomName, ThreeMacIds macIds) throws IOException {
+    public void putNewRoomWithDeterminantMacIds(String roomName, FourMacIds macIds) throws IOException {
 
         String jsonPostString = gson.toJson(macIds);
 
@@ -59,7 +58,7 @@ public enum ServerHandler {
         server.doPostRequest(resource, jsonPostString);
     }
 
-    public Point getNearestXYLocalizationPoint(int roomId, ThreeRSSISignals measurmentSignals) throws IOException {
+    public Point getNearestXYLocalizationPoint(int roomId, FourRSSISignals measurmentSignals) throws IOException {
 
         String resource = "localization/rooms/" + roomId + "/point";
         String query =

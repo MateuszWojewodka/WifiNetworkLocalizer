@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="WifiNetworkLocalizer.Model.Message_Types.DeterminantMacIds">
+    <Position X="13" Y="12" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAARAAAAAAAAAAAAAAAAAQAAAAABAAABA=</HashCode>
+      <FileName>Database Classes\DeterminantMacIds.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Database_Classes.FourMacIds">
+    <Position X="11.25" Y="5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAARAAAAAAAAAAAAAAAAAQAAAAAAAAABA=</HashCode>
+      <FileName>Database Classes\FourMacIds.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Database_Classes.FourRSSISignals">
+    <Position X="17.25" Y="1.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAABEAAAAAABAAAAAAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Database Classes\FourRSSISignals.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Database_Classes.RoomInfo">
+    <Position X="14.25" Y="1.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Database Classes\RoomInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Entity_Classes.Point">
+    <Position X="12.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgAAAAAAA=</HashCode>
+      <FileName>Database Classes\Point.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Entity_Classes.RSSIMeasurmentPoint">
+    <Position X="20.5" Y="2" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAACBEQCAAAABAAAAAAAAAAAAAAAQAAAAAAAAAAAYAA=</HashCode>
+      <FileName>Database Classes\RSSIMeasurmentPoint.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WifiNetworkLocalizer.Model.Database_Entities.WifiLocalizerContext">
+    <Position X="19.75" Y="8.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contexts\WifiLocalizerContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="System.Data.Entity.DbContext" Collapsed="true">
+    <Position X="20.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Controller.UnityConfig">
+    <Position X="9.75" Y="0.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>aaa\App_Start\UnityConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Controller.UnityWebApiActivator">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>aaa\App_Start\UnityWebApiActivator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WifiNetworkLocalizer.Controller.LocalizationController">
+    <Position X="0.75" Y="0.75" Width="6" />
+    <TypeIdentifier>
+      <HashCode>AAgAAEUAAAAAAAAAAAAAAAAAAQAAAACAAAAAAAAgAAA=</HashCode>
+      <FileName>aaa\Controllers\LocalizationController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Controller.CustomExceptionLogger">
+    <Position X="7.25" Y="3" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>aaa\Exceptions\CustomExceptionLogger.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WifiNetworkLocalizer.StartUp">
+    <Position X="16" Y="4.75" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAAAAAAgAAAAAAgAAABAAAAAAABAAAAAA=</HashCode>
+      <FileName>aaa\StartUp.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Logic.DatabaseHandler">
+    <Position X="10.5" Y="7.5" Width="4.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAEAAAAAAAAAAAAAAQAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Logic\DatabaseHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WifiNetworkLocalizer.Model.Database_Handlers.Localization">
+    <Position X="2" Y="7" Width="7.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEEAAAAAYAAAAAAAAAAAAQAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>Logic\Localization.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="WifiNetworkLocalizer.Model.Database_Handlers.ILocalization">
+    <Position X="4.5" Y="4.75" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEEAAAAAQAAAAAAAAAAAAQAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>Interfaces\ILocalization.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

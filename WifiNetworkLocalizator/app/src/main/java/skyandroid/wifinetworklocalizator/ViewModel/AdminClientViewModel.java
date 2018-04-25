@@ -8,8 +8,8 @@ import java.util.List;
 
 import skyandroid.wifinetworklocalizator.Model.DataTypes.Point;
 import skyandroid.wifinetworklocalizator.Model.DataTypes.RoomInfo;
-import skyandroid.wifinetworklocalizator.Model.DataTypes.ThreeMacIds;
-import skyandroid.wifinetworklocalizator.Model.DataTypes.ThreeRSSISignals;
+import skyandroid.wifinetworklocalizator.Model.DataTypes.FourMacIds;
+import skyandroid.wifinetworklocalizator.Model.DataTypes.FourRSSISignals;
 import skyandroid.wifinetworklocalizator.Model.HelperClasses.WifiDevicesDetails;
 import skyandroid.wifinetworklocalizator.Model.LocalizationLogic;
 import skyandroid.wifinetworklocalizator.Model.ServerHandler;
@@ -26,7 +26,7 @@ public class AdminClientViewModel implements ViewModel {
     public String roomName = "";
     public int roomId = 0;
 
-    public ThreeRSSISignals measurmentSignals = new ThreeRSSISignals();
+    public FourRSSISignals measurmentSignals = new FourRSSISignals();
 
     public AdminClientViewModel(AppCompatActivity ctx) {
         localizationLogic = new LocalizationLogic(ctx);
@@ -60,7 +60,7 @@ public class AdminClientViewModel implements ViewModel {
         return localizationLogic.checkIfRoomNameIsUnique(roomName);
     }
 
-    public void createNewRoom(ThreeMacIds macIds) throws IOException {
+    public void createNewRoom(FourMacIds macIds) throws IOException {
 
         ServerHandler.INSTANCE.putNewRoomWithDeterminantMacIds(roomName, macIds);
     }

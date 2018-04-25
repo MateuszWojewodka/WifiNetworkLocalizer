@@ -42,7 +42,7 @@
         android:layout_height="23dp"
         android:layout_marginStart="80dp"
         android:layout_marginTop="40dp"
-        android:text="Wybierz 3 pomiarowe acces pointy:"
+        android:text="Wybierz 4 pomiarowe acces pointy:"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnConfirmChoseMacIds" />
 </android.support.constraint.ConstraintLayout>

@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import skyandroid.wifinetworklocalizator.Model.DataTypes.ThreeMacIds;
+import skyandroid.wifinetworklocalizator.Model.DataTypes.FourMacIds;
 import skyandroid.wifinetworklocalizator.Model.HelperClasses.WifiDevicesDetails;
 import skyandroid.wifinetworklocalizator.R;
 import skyandroid.wifinetworklocalizator.ViewModel.AdminClientViewModel;
@@ -138,9 +138,9 @@ public class ChooseDeterminantMacIdsActivity extends AppCompatActivity {
         }.execute();
     }
 
-    private ThreeMacIds getThreeMacIdsFromStringList(List<String> list) {
+    private FourMacIds getThreeMacIdsFromStringList(List<String> list) {
 
-        ThreeMacIds result = new ThreeMacIds();
+        FourMacIds result = new FourMacIds();
         result.FirstMacId = list.get(0);
         result.SecondMacId = list.get(1);
         result.ThirdMacId = list.get(2);

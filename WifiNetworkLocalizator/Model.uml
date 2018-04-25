@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>skyandroid.wifinetworklocalizator.Model</OriginalElement>
+  <nodes>
+    <node x="2065.6618627450976" y="44.5">skyandroid.wifinetworklocalizator.Model.DataTypes.RoomInfo</node>
+    <node x="709.9730252100842" y="2135.0">skyandroid.wifinetworklocalizator.View.AdminUser.ChooseAdminModeActivity</node>
+    <node x="1067.789691876751" y="0.5">skyandroid.wifinetworklocalizator.Model.DataTypes.MeasurmentPoint</node>
+    <node x="209.7166666666667" y="11.0">skyandroid.wifinetworklocalizator.Model.HelperClasses.WifiDevicesDetails</node>
+    <node x="2151.81350140056" y="1504.0">skyandroid.wifinetworklocalizator.View.AnonymousUser.LocalizationInRoomActivity</node>
+    <node x="1616.3135014005604" y="703.5">skyandroid.wifinetworklocalizator.ViewModel.ViewModel</node>
+    <node x="0.0" y="22.5">skyandroid.wifinetworklocalizator.Model.DataTypes.FourMacIds</node>
+    <node x="818.1563585434176" y="22.5">skyandroid.wifinetworklocalizator.Model.DataTypes.FourRSSISignals</node>
+    <node x="1863.9668137254898" y="1868.0">skyandroid.wifinetworklocalizator.View.AdminUser.ChoosingRoomActivity</node>
+    <node x="337.6646918767508" y="1791.0">skyandroid.wifinetworklocalizator.View.AdminUser.ChooseDeterminantMacIdsActivity</node>
+    <node x="1928.9385014005607" y="1083.0">skyandroid.wifinetworklocalizator.ViewModel.AnonymousClientViewModel</node>
+    <node x="1636.8135014005604" y="1471.0">skyandroid.wifinetworklocalizator.View.AdminUser.MeasurmentsActivity</node>
+    <node x="750.3063585434176" y="1050.0">skyandroid.wifinetworklocalizator.ViewModel.AdminClientViewModel</node>
+    <node x="1417.077191876751" y="2391.0">skyandroid.wifinetworklocalizator.View.StartUpActivity</node>
+    <node x="1307.2063585434175" y="0.0">skyandroid.wifinetworklocalizator.Model.HelperClasses.HttpCommunicationHandler</node>
+    <node x="1169.2063585434175" y="274.5">skyandroid.wifinetworklocalizator.Model.ServerHandler</node>
+    <node x="849.8596708683469" y="614.0">skyandroid.wifinetworklocalizator.Model.LocalizationLogic</node>
+    <node x="1748.958032212884" y="44.5">skyandroid.wifinetworklocalizator.Model.DataTypes.Point</node>
+    <node x="2172.96681372549" y="1868.0">skyandroid.wifinetworklocalizator.View.AnonymousUser.ChoosingRoomActivity</node>
+    <node x="273.3866036414556" y="252.0">skyandroid.wifinetworklocalizator.Model.HelperClasses.WifiHandler</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="skyandroid.wifinetworklocalizator.ViewModel.AdminClientViewModel" target="skyandroid.wifinetworklocalizator.ViewModel.ViewModel">
+      <point x="109.90000000000009" y="-180.5" />
+      <point x="1017.2063585434177" y="1020.0" />
+      <point x="1656.0635014005604" y="1020.0" />
+      <point x="-39.75" y="58.5" />
+    </edge>
+    <edge source="skyandroid.wifinetworklocalizator.ViewModel.AnonymousClientViewModel" target="skyandroid.wifinetworklocalizator.Model.LocalizationLogic">
+      <point x="-97.14285714285711" y="-147.5" />
+      <point x="2001.7956442577033" y="980.0" />
+      <point x="1311.859670868347" y="980.0" />
+      <point x="198.0" y="148.0" />
+    </edge>
+    <edge source="skyandroid.wifinetworklocalizator.ViewModel.AdminClientViewModel" target="skyandroid.wifinetworklocalizator.Model.DataTypes.RoomInfo">
+      <point x="141.30000000000007" y="-180.5" />
+      <point x="1048.6063585434176" y="1030.0" />
+      <point x="2166.6618627450976" y="1030.0" />
+      <point x="2166.6618627450976" y="232.0" />
+      <point x="2133.995196078431" y="232.0" />
+      <point x="-13.666666666666515" y="36.5" />
+    </edge>
+    <edge source="skyandroid.wifinetworklocalizator.Model.LocalizationLogic" target="skyandroid.wifinetworklocalizator.Model.DataTypes.Point">
+      <point x="192.0" y="-148.0" />
+      <point x="1305.859670868347" y="584.0" />
+      <point x="1594.8135014005604" y="584.0" />
+      <point x="1594.8135014005604" y="202.0" />
+      <point x="1768.6723179271698" y="202.0" />
+      <point x="-26.28571428571422" y="36.5" />
+    </edge>
+    <edge source="skyandroid.wifinetworklocalizator.View.AdminUser.ChooseAdminModeActivity" target="skyandroid.wifinetworklocalizator.View.AdminUser.ChooseDeterminantMacIdsActivity">
+      <point x="-117.0" y="-103.0" />
+      <point x="748.9730252100842" y="2110.0" />
+      <point x="522.1646918767508" y="2110.0" />
+      <point x="0.0" y="147.0" />
+    </edge>
+    <edge source="skyandroid.wifinetworklocalizator.ViewModel.AdminClientViewModel" target="skyandroid.wifinetworklocalizator.Model.HelperClasses.WifiDevicesDetails">
+      <point x="-109.89999999999975" y="-180.5" />
+      <point x="797.4063585434178" y="1020.0" />
+      <point x="251.8866036414554" y="1020.0" />
+      <point x="251.8866036414554" y="222.0" />
+      <point x="279.9666666666667" y="222.0" />
+      <point x="-70.25" y="70.0" />
+    </edge>
+    <edge source="skyandroid.wifinetworklocalizator.View.AnonymousUser.LocalizationInRoomActivity" target="skyandroid.wifinetworklocalizator.ViewModel.AnonymousClientViewModel">
+      <point x="-71.25" y="-92.0" />
+      <point x="2223.06350140056" y="1451.0" />
+      <point x="2183.9385014005607" y="1451.0" />
+      <point x="85.0" y="147.5" />
+    </edge>
+    <edge source="skyandroid.wifinetworklocalizator.Model.ServerHandler" target="skyandroid.wifinetworklocalizator.Model.DataTypes.Point">
+      <point x="115.71428571428578" y="-103.5" />
+      <point x="1487.4206442577033" y="192.0" />
+      <point x="1755.529460784313" y="192.0" />
+      <point x="-39.42857142857133" y="36.5" />
+    </edge>
+    <edge source="skyandroid.wifinetworklocalizator.Model.ServerHandler" target="skyandroid.wifinetworklocalizator.Model.DataTypes.MeasurmentPoint">
+      <point x="-57.85714285714289" y="-103.5" />
+      <point x="1313.8492156862746" y="192.0" />
+      <point x="1231.9563585434178" y="192.0" />
+      <point x="65.66666666666674" y="80.5" />
+    </edge>
+    <edge source="skyandroid.wifinetworklocalizator.Model.ServerHandler" target="skyandroid.wifinetworklocalizator.Model.DataTypes.RoomInfo">
+      <point x="173.57142857142867" y="-103.5" />
+      <point x="1545.2777871148462" y="222.0" />
+      <point x="2079.328529411764" y="222.0" />
+      <point x="-68.33333333333348" y="36.5" />
+    </edge>
+    <edge source="skyandroid.wifinetworklocalizator.ViewModel.AdminClientViewModel" target="skyandroid.wifinetworklocalizator.Model.DataTypes.Point">
+      <point x="78.50000000000011" y="-180.5" />
+      <point x="985.8063585434177" y="1010.0" />
+      <point x="1605.8135014005604" y="1010.0" />
+      <point x="1605.8135014005604" y="212.0" />
+      <point x="1781.8151750700272" y="212.0" />
+      <point x="-13.14285714285711" y="36.5" />
+    </edge>
+    <edge source="skyandroid.wifinetworklocalizator.ViewModel.AdminClientViewModel" target="skyandroid.wifinetworklocalizator.Model.ServerHandler">
+      <point x="47.100000000000136" y="-180.5" />
+      <point x="954.4063585434177" y="1000.0" />
+      <point x="1441.1310574229683" y="1000.0" />
+      <point x="1441.1310574229683" y="574.0" />
+      <point x="1371.7063585434175" y="574.0" />
+      <point x="0.0" y="103.5" />
+    </edge>
+    <edge source="skyandroid.wifinetworklocalizator.View.AdminUser.MeasurmentsActivity" target="skyandroid.wifinetworklocalizator.ViewModel.AdminClientViewModel">
+      <point x="-96.0" y="-125.0" />
+      <point x="1668.8135014005604" y="1451.0" />
+      <point x="985.8063585434176" y="1451.0" />
+      <point x="78.5" y="180.5" />
+    </edge>
+    <edge source="skyandroid.wifinetworklocalizator.Model.ServerHandler" target="skyandroid.wifinetworklocalizator.Model.HelperClasses.HttpCommunicationHandler">
+      <point x="0.0" y="-103.5" />
+      <point x="-64.5" y="81.0" />
+    </edge>
+    <edge source="skyandroid.wifinetworklocalizator.View.AdminUser.ChooseAdminModeActivity" target="skyandroid.wifinetworklocalizator.View.AdminUser.ChoosingRoomActivity">
+      <point x="117.0" y="-103.0" />
+      <point x="982.9730252100842" y="2110.0" />
+      <point x="2008.4668137254898" y="2110.0" />
+      <point x="0.0" y="70.0" />
+    </edge>
+    <edge source="skyandroid.wifinetworklocalizator.Model.LocalizationLogic" target="skyandroid.wifinetworklocalizator.Model.ServerHandler">
+      <point x="144.0" y="-148.0" />
+      <point x="1257.859670868347" y="594.0" />
+      <point x="1236.7063585434175" y="594.0" />
+      <point x="-135.0" y="103.5" />
+    </edge>
+    <edge source="skyandroid.wifinetworklocalizator.View.StartUpActivity" target="skyandroid.wifinetworklocalizator.View.AnonymousUser.ChoosingRoomActivity">
+      <point x="47.0" y="-48.0" />
+      <point x="1558.077191876751" y="2366.0" />
+      <point x="2317.46681372549" y="2366.0" />
+      <point x="0.0" y="70.0" />
+    </edge>
+    <edge source="skyandroid.wifinetworklocalizator.Model.LocalizationLogic" target="skyandroid.wifinetworklocalizator.Model.DataTypes.MeasurmentPoint">
+      <point x="96.0" y="-148.0" />
+      <point x="1209.859670868347" y="524.0" />
+      <point x="1138.9563585434175" y="524.0" />
+      <point x="1138.9563585434175" y="232.0" />
+      <point x="1166.289691876751" y="232.0" />
+      <point x="0.0" y="80.5" />
+    </edge>
+    <edge source="skyandroid.wifinetworklocalizator.View.AdminUser.ChooseDeterminantMacIdsActivity" target="skyandroid.wifinetworklocalizator.Model.DataTypes.FourMacIds">
+      <point x="-153.75" y="-147.0" />
+      <point x="368.4146918767508" y="1771.0" />
+      <point x="77.5" y="1771.0" />
+      <point x="77.5" y="232.0" />
+      <point x="17.5" y="232.0" />
+      <point x="-70.0" y="58.5" />
+    </edge>
+    <edge source="skyandroid.wifinetworklocalizator.View.StartUpActivity" target="skyandroid.wifinetworklocalizator.View.AdminUser.ChooseAdminModeActivity">
+      <point x="-47.0" y="-48.0" />
+      <point x="1464.077191876751" y="2366.0" />
+      <point x="865.9730252100842" y="2366.0" />
+      <point x="0.0" y="103.0" />
+    </edge>
+    <edge source="skyandroid.wifinetworklocalizator.ViewModel.AnonymousClientViewModel" target="skyandroid.wifinetworklocalizator.Model.ServerHandler">
+      <point x="0.0" y="-147.5" />
+      <point x="2098.9385014005607" y="960.0" />
+      <point x="1785.8135014005604" y="960.0" />
+      <point x="1785.8135014005604" y="574.0" />
+      <point x="1506.7063585434175" y="574.0" />
+      <point x="135.0" y="103.5" />
+    </edge>
+    <edge source="skyandroid.wifinetworklocalizator.View.AnonymousUser.ChoosingRoomActivity" target="skyandroid.wifinetworklocalizator.Model.DataTypes.RoomInfo">
+      <point x="108.375" y="-70.0" />
+      <point x="2425.84181372549" y="1771.0" />
+      <point x="2543.4048669467784" y="1771.0" />
+      <point x="2543.4048669467784" y="222.0" />
+      <point x="2215.995196078431" y="222.0" />
+      <point x="68.33333333333348" y="36.5" />
+    </edge>
+    <edge source="skyandroid.wifinetworklocalizator.Model.LocalizationLogic" target="skyandroid.wifinetworklocalizator.Model.DataTypes.FourMacIds">
+      <point x="-240.0" y="-148.0" />
+      <point x="873.8596708683469" y="594.0" />
+      <point x="145.22302521008442" y="594.0" />
+      <point x="145.22302521008442" y="232.0" />
+      <point x="122.5" y="232.0" />
+      <point x="35.0" y="58.5" />
+    </edge>
+    <edge source="skyandroid.wifinetworklocalizator.ViewModel.AnonymousClientViewModel" target="skyandroid.wifinetworklocalizator.Model.DataTypes.Point">
+      <point x="48.57142857142844" y="-147.5" />
+      <point x="2147.509929971989" y="950.0" />
+      <point x="2078.2094817927164" y="950.0" />
+      <point x="2078.2094817927164" y="202.0" />
+      <point x="1821.2437464985983" y="202.0" />
+      <point x="26.28571428571422" y="36.5" />
+    </edge>
+    <edge source="skyandroid.wifinetworklocalizator.View.AdminUser.ChooseAdminModeActivity" target="skyandroid.wifinetworklocalizator.ViewModel.AdminClientViewModel">
+      <point x="-39.0" y="-103.0" />
+      <point x="826.9730252100842" y="2110.0" />
+      <point x="860.4730252100842" y="2110.0" />
+      <point x="860.4730252100842" y="1441.0" />
+      <point x="881.1396918767509" y="1441.0" />
+      <point x="-26.16666666666663" y="180.5" />
+    </edge>
+    <edge source="skyandroid.wifinetworklocalizator.View.AdminUser.ChooseDeterminantMacIdsActivity" target="skyandroid.wifinetworklocalizator.View.AdminUser.MeasurmentsActivity">
+      <point x="153.75" y="-147.0" />
+      <point x="675.9146918767508" y="1771.0" />
+      <point x="1700.8135014005604" y="1771.0" />
+      <point x="-64.0" y="125.0" />
+    </edge>
+    <edge source="skyandroid.wifinetworklocalizator.Model.LocalizationLogic" target="skyandroid.wifinetworklocalizator.Model.HelperClasses.WifiHandler">
+      <point x="-96.0" y="-148.0" />
+      <point x="1017.8596708683469" y="564.0" />
+      <point x="629.6366036414556" y="564.0" />
+      <point x="118.75" y="126.0" />
+    </edge>
+    <edge source="skyandroid.wifinetworklocalizator.ViewModel.AdminClientViewModel" target="skyandroid.wifinetworklocalizator.Model.DataTypes.FourMacIds">
+      <point x="-141.29999999999984" y="-180.5" />
+      <point x="766.0063585434177" y="1030.0" />
+      <point x="99.5" y="1030.0" />
+      <point x="99.5" y="212.0" />
+      <point x="87.5" y="212.0" />
+      <point x="0.0" y="58.5" />
+    </edge>
+    <edge source="skyandroid.wifinetworklocalizator.Model.HelperClasses.WifiHandler" target="skyandroid.wifinetworklocalizator.Model.HelperClasses.WifiDevicesDetails">
+      <point x="158.33333333333337" y="-126.0" />
+      <point x="669.219936974789" y="222.0" />
+      <point x="467.30000000000007" y="222.0" />
+      <point x="117.08333333333337" y="70.0" />
+    </edge>
+    <edge source="skyandroid.wifinetworklocalizator.Model.ServerHandler" target="skyandroid.wifinetworklocalizator.Model.DataTypes.FourMacIds">
+      <point x="-173.57142857142867" y="-103.5" />
+      <point x="1198.1349299719889" y="212.0" />
+      <point x="157.5" y="212.0" />
+      <point x="70.0" y="58.5" />
+    </edge>
+    <edge source="skyandroid.wifinetworklocalizator.View.AdminUser.ChooseDeterminantMacIdsActivity" target="skyandroid.wifinetworklocalizator.ViewModel.AdminClientViewModel">
+      <point x="92.25" y="-147.0" />
+      <point x="614.4146918767508" y="1761.0" />
+      <point x="849.4730252100842" y="1761.0" />
+      <point x="849.4730252100842" y="1451.0" />
+      <point x="828.8063585434176" y="1451.0" />
+      <point x="-78.5" y="180.5" />
+    </edge>
+    <edge source="skyandroid.wifinetworklocalizator.View.AdminUser.ChoosingRoomActivity" target="skyandroid.wifinetworklocalizator.Model.DataTypes.RoomInfo">
+      <point x="108.375" y="-70.0" />
+      <point x="2116.84181372549" y="1761.0" />
+      <point x="2447.31350140056" y="1761.0" />
+      <point x="2447.31350140056" y="232.0" />
+      <point x="2188.6618627450976" y="232.0" />
+      <point x="41.0" y="36.5" />
+    </edge>
+    <edge source="skyandroid.wifinetworklocalizator.View.AdminUser.ChoosingRoomActivity" target="skyandroid.wifinetworklocalizator.ViewModel.AnonymousClientViewModel">
+      <point x="36.125" y="-70.0" />
+      <point x="2044.5918137254898" y="1761.0" />
+      <point x="1917.404866946778" y="1761.0" />
+      <point x="1917.404866946778" y="1441.0" />
+      <point x="2013.9385014005607" y="1441.0" />
+      <point x="-85.0" y="147.5" />
+    </edge>
+    <edge source="skyandroid.wifinetworklocalizator.View.AdminUser.MeasurmentsActivity" target="skyandroid.wifinetworklocalizator.Model.DataTypes.Point">
+      <point x="96.0" y="-125.0" />
+      <point x="1860.8135014005604" y="1451.0" />
+      <point x="1877.9668137254898" y="1451.0" />
+      <point x="1877.9668137254898" y="212.0" />
+      <point x="1808.1008893557414" y="212.0" />
+      <point x="13.14285714285711" y="36.5" />
+    </edge>
+    <edge source="skyandroid.wifinetworklocalizator.Model.LocalizationLogic" target="skyandroid.wifinetworklocalizator.Model.HelperClasses.WifiDevicesDetails">
+      <point x="-192.0" y="-148.0" />
+      <point x="921.8596708683469" y="584.0" />
+      <point x="262.8866036414555" y="584.0" />
+      <point x="262.8866036414555" y="232.0" />
+      <point x="326.80000000000007" y="232.0" />
+      <point x="-23.41666666666663" y="70.0" />
+    </edge>
+    <edge source="skyandroid.wifinetworklocalizator.Model.ServerHandler" target="skyandroid.wifinetworklocalizator.Model.DataTypes.FourRSSISignals">
+      <point x="-115.71428571428578" y="-103.5" />
+      <point x="1255.9920728291318" y="202.0" />
+      <point x="994.5563585434176" y="202.0" />
+      <point x="78.39999999999998" y="58.5" />
+    </edge>
+    <edge source="skyandroid.wifinetworklocalizator.ViewModel.AdminClientViewModel" target="skyandroid.wifinetworklocalizator.Model.LocalizationLogic">
+      <point x="15.70000000000016" y="-180.5" />
+      <point x="923.0063585434177" y="990.0" />
+      <point x="1047.859670868347" y="990.0" />
+      <point x="-66.0" y="148.0" />
+    </edge>
+    <edge source="skyandroid.wifinetworklocalizator.View.AdminUser.ChooseDeterminantMacIdsActivity" target="skyandroid.wifinetworklocalizator.Model.HelperClasses.WifiDevicesDetails">
+      <point x="-30.75" y="-147.0" />
+      <point x="491.4146918767508" y="1751.0" />
+      <point x="166.33329131652613" y="1751.0" />
+      <point x="166.33329131652613" y="232.0" />
+      <point x="233.13333333333344" y="232.0" />
+      <point x="-117.08333333333326" y="70.0" />
+    </edge>
+    <edge source="skyandroid.wifinetworklocalizator.ViewModel.AdminClientViewModel" target="skyandroid.wifinetworklocalizator.Model.DataTypes.FourRSSISignals">
+      <point x="-78.49999999999989" y="-180.5" />
+      <point x="828.8063585434177" y="1010.0" />
+      <point x="758.8866036414556" y="1010.0" />
+      <point x="758.8866036414556" y="222.0" />
+      <point x="837.7563585434176" y="222.0" />
+      <point x="-78.39999999999998" y="58.5" />
+    </edge>
+    <edge source="skyandroid.wifinetworklocalizator.Model.LocalizationLogic" target="skyandroid.wifinetworklocalizator.Model.DataTypes.FourRSSISignals">
+      <point x="-48.0" y="-148.0" />
+      <point x="1065.859670868347" y="554.0" />
+      <point x="902.0563585434177" y="554.0" />
+      <point x="902.0563585434177" y="232.0" />
+      <point x="916.1563585434176" y="232.0" />
+      <point x="0.0" y="58.5" />
+    </edge>
+    <edge source="skyandroid.wifinetworklocalizator.View.AdminUser.ChoosingRoomActivity" target="skyandroid.wifinetworklocalizator.View.AdminUser.MeasurmentsActivity">
+      <point x="-108.375" y="-70.0" />
+      <point x="1900.0918137254898" y="1771.0" />
+      <point x="1828.8135014005604" y="1771.0" />
+      <point x="64.0" y="125.0" />
+    </edge>
+    <edge source="skyandroid.wifinetworklocalizator.View.AnonymousUser.ChoosingRoomActivity" target="skyandroid.wifinetworklocalizator.View.AnonymousUser.LocalizationInRoomActivity">
+      <point x="36.125" y="-70.0" />
+      <point x="2353.59181372549" y="1751.0" />
+      <point x="2294.31350140056" y="1751.0" />
+      <point x="0.0" y="92.0" />
+    </edge>
+    <edge source="skyandroid.wifinetworklocalizator.ViewModel.AnonymousClientViewModel" target="skyandroid.wifinetworklocalizator.ViewModel.ViewModel">
+      <point x="-48.57142857142844" y="-147.5" />
+      <point x="2050.367072829132" y="970.0" />
+      <point x="1735.5635014005604" y="970.0" />
+      <point x="39.75" y="58.5" />
+    </edge>
+    <edge source="skyandroid.wifinetworklocalizator.Model.LocalizationLogic" target="skyandroid.wifinetworklocalizator.Model.DataTypes.RoomInfo">
+      <point x="240.0" y="-148.0" />
+      <point x="1353.859670868347" y="594.0" />
+      <point x="1736.5333333333333" y="594.0" />
+      <point x="1736.5333333333333" y="232.0" />
+      <point x="2106.6618627450976" y="232.0" />
+      <point x="-41.0" y="36.5" />
+    </edge>
+    <edge source="skyandroid.wifinetworklocalizator.View.AnonymousUser.ChoosingRoomActivity" target="skyandroid.wifinetworklocalizator.ViewModel.AnonymousClientViewModel">
+      <point x="-36.125" y="-70.0" />
+      <point x="2281.34181372549" y="1741.0" />
+      <point x="2141.31350140056" y="1741.0" />
+      <point x="2141.31350140056" y="1451.0" />
+      <point x="2127.271834733894" y="1451.0" />
+      <point x="28.333333333333485" y="147.5" />
+    </edge>
+    <edge source="skyandroid.wifinetworklocalizator.ViewModel.AnonymousClientViewModel" target="skyandroid.wifinetworklocalizator.Model.DataTypes.RoomInfo">
+      <point x="145.71428571428578" y="-147.5" />
+      <point x="2244.6527871148464" y="930.0" />
+      <point x="2177.6618627450976" y="930.0" />
+      <point x="2177.6618627450976" y="222.0" />
+      <point x="2161.328529411764" y="222.0" />
+      <point x="13.666666666666515" y="36.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.4" x="1644.416666666667" y="1171.6666666666665" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+    <Category>Constructors</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
